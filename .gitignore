@@ -1,0 +1,8 @@
+node_modules
+.dist
+.idea
+*.exe
+.fleet
+.vscode
+.env
+package-lock.json
