@@ -9,6 +9,7 @@ import { useAuthStore } from "../stores/auth";
 //Auth layout
 const AuthLogin = () => import("@/views/auth/Login.vue");
 const AuthRecover = () => import("@/views/auth/RecoverPassword.vue");
+const ChangePassword = () => import("../views/auth/ChangePassword.vue");
 
 const ProfileView = () => import("@/views/Profile.vue");
 
@@ -34,7 +35,7 @@ const routes = [
         path: "profile",
         name: "profile",
         component: ProfileView,
-      }
+      },
     ],
   },
   {
@@ -50,6 +51,11 @@ const routes = [
         path: "recover",
         name: "recover",
         component: AuthRecover,
+      },
+      {
+        path: "change-password/:id",
+        name: "changepassword",
+        component: ChangePassword,
       },
     ],
   },
@@ -94,7 +100,7 @@ router.afterEach((to, from) => {
 });
 
 router.beforeEach((to, from) => {
-  const publicPages = ["login", "recover"];
+  const publicPages = ["login", "recover", "changepassword"];
   const authRequired = !publicPages.includes(to.name);
   const auth = useAuthStore();
 

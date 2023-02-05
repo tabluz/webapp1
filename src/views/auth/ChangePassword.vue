@@ -2,26 +2,28 @@
 import { reactive } from "vue";
 import { Form, Field } from "vee-validate";
 import Auth from "../components/Auth.vue";
-import { sendToMeSms } from "../../api/index";
+import { changePassword, sendToMeSms } from "../../api/index";
 import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
 // Input state variables
 const state = reactive({
-  dni: "",
-  number: "",
+  smscode: "",
+  newpassword: "",
   res: {},
 });
 
 async function onSubmit(e) {
   try {
-    const res = await sendToMeSms({
-      dni: state.dni,
-      number: state.number,
+    const id = route.params.id;
+    const data = await changePassword(id, {
+      temporal_code: state.smscode,
+      password: state.newpassword,
     });
-    state.res = res;
+    state.res = data;
     setTimeout(() => {
-      router.push({ name: "changepassword", params: { id: res.data } });
+      router.push({ name: "login" });
     }, 2000);
   } catch (error) {
     state.res = error;
@@ -32,44 +34,47 @@ async function onSubmit(e) {
 <template>
   <!-- Page Content -->
   <Auth
-    title="Recuperar clave"
-    description="Te vamos a enviar un sms si tu celular coincide con nuestros registros"
+    title="Cambiar clave"
+    description="Ingresa el codigo sms que te hemos enviado a tu celular"
   >
     <div class="row g-0 justify-content-center">
       <div class="col-sm-8 col-xl-4">
         <Form v-slot="{ errors }" @submit="onSubmit">
           <div class="mb-4">
-            <label class="form-label" for="fi-uname"> DNI </label>
+            <label class="form-label" for="fi-uname"> Codigo SMS </label>
             <Field
               id="fi-uname"
-              v-model="state.dni"
-              name="dni"
+              v-model="state.smscode"
+              name="smscode"
               type="text"
               class="form-control form-control-lg form-control-alt py-3"
-              :class="{ 'is-invalid': errors.dni }"
-              placeholder="Por ejemplo 15481548"
+              :class="{ 'is-invalid': errors.smscode }"
+              placeholder="Por ejemplo 1548"
             />
 
-            <div v-show="errors.dni" class="invalid-feedback animated fadeIn">
-              {{ errors.dni }}
+            <div
+              v-show="errors.smscode"
+              class="invalid-feedback animated fadeIn"
+            >
+              {{ errors.smscode }}
             </div>
           </div>
           <div class="mb-4">
-            <label class="form-label" for="fi-number">Numero de celular</label>
+            <label class="form-label" for="fi-number"> Nueva contraseña </label>
             <Field
-              id="fi-number"
-              v-model="state.number"
-              name="number"
+              id="fi-newpassword"
+              v-model="state.newpassword"
+              name="newpassword"
               type="text"
               class="form-control form-control-lg form-control-alt py-3"
-              :class="{ 'is-invalid': errors.number }"
-              placeholder="+51"
+              :class="{ 'is-invalid': errors.newpassword }"
+              placeholder="********"
             />
             <div
-              v-show="errors.number"
+              v-show="errors.newpassword"
               class="invalid-feedback animated fadeIn"
             >
-              {{ errors.number }}
+              {{ errors.newpassword }}
             </div>
           </div>
           <div
@@ -91,7 +96,7 @@ async function onSubmit(e) {
             </div>
             <div>
               <button type="submit" class="btn btn-lg btn-alt-success">
-                Solicitar
+                Enviar
               </button>
             </div>
           </div>

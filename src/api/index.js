@@ -6,7 +6,18 @@ import axios from "./axios";
  */
 export const sigin = (payload) => axios.post("/login", payload);
 
+/**
+ * @url POST /login/sendcode
+ * @since 1.0
+ */
+export const sendToMeSms = (payload) => axios.post("/login/sendcode", payload);
 
+/**
+ * @url POST /sendcode
+ * @since 1.0
+ */
+export const changePassword = (id, payload) =>
+  axios.put(`/login/verifycode/${id}`, payload);
 /*
 export const fetchAttendances = (id) => axios.get(`/attendance/${id}`);
 export const putExample = (payload) => axios.put("/payemnt/${}", payload);

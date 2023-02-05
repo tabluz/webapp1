@@ -34,8 +34,7 @@ const { getEsential, logout } = useAuthStore();
               >
                 <i class="fa fa-fw fa-bars" />
               </button>
-              <strong class="text-warning"
-                >
+              <strong class="text-warning">
                 Hoy es {{ new Date().toLocaleDateString() }}</strong
               >
               <!-- END Toggle Mini Sidebar -->
