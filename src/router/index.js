@@ -67,6 +67,8 @@ const routes = [
         path: "newpayment",
         name: "newpayment",
         component: NewPaymentAll,
+      },
+      {
         path: "attendance",
         name: "attendance",
         component: AttendanceView,

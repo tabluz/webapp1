@@ -56,7 +56,7 @@ function showAlert(id) {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="payment in state.payments">
+            <tr v-for="payment in state.payments" :key="payment.id">
               <td class="fw-semibold fs-sm">
                 {{ payment.id }}
               </td>

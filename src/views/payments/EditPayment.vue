@@ -14,7 +14,7 @@ const state = reactive({
   res: {},
 });
 
-async function onSubmit(e) {
+async function onSubmit() {
   const id = route.params.id;
   const data = await editPayment(id, {
     payment_type: state.paymenttype,

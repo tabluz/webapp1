@@ -7,14 +7,7 @@ import {
   isBeforeFromNow,
 } from "../../utils/day";
 
-import {
-  defineEmits,
-  onMounted,
-  computed,
-  onBeforeUnmount,
-  reactive,
-  toRefs,
-} from "vue";
+import { onMounted, computed, onBeforeUnmount, reactive, toRefs } from "vue";
 
 const state = reactive({
   resmsg: null,

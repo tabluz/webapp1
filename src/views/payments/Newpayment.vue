@@ -11,7 +11,7 @@ const state = reactive({
   res: {},
 });
 
-async function onSubmit(e) {
+async function onSubmit() {
   const data = await createPayment({
     payment_type: state.paymenttype,
     description: state.descriptionpayment,
