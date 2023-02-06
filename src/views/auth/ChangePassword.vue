@@ -2,7 +2,7 @@
 import { reactive } from "vue";
 import { Form, Field } from "vee-validate";
 import Auth from "../components/Auth.vue";
-import { changePassword, sendToMeSms } from "../../api/index";
+import { changePassword } from "../../api/index";
 import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
@@ -16,7 +16,7 @@ const state = reactive({
   showpassword: false,
 });
 
-async function onSubmit(e) {
+async function onSubmit() {
   try {
     if (state.newpassword != state.confirmPassword) {
       state.res = {

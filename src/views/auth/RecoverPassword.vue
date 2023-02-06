@@ -3,7 +3,7 @@ import { reactive } from "vue";
 import { Form, Field } from "vee-validate";
 import Auth from "../components/Auth.vue";
 import { sendToMeSms } from "../../api/index";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 // Input state variables
@@ -13,7 +13,7 @@ const state = reactive({
   res: {},
 });
 
-async function onSubmit(e) {
+async function onSubmit() {
   try {
     const res = await sendToMeSms({
       dni: state.dni,
