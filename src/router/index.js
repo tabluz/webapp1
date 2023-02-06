@@ -13,6 +13,7 @@ const ChangePassword = () => import("../views/auth/ChangePassword.vue");
 
 const ProfileView = () => import("@/views/Profile.vue");
 const PersonListView = () => import("@/views/person/List.vue");
+const PersonCreateView = () => import("@/views/person/Create.vue");
 
 const PaymentsListView = () => import("@/views/payments/PaymentsList.vue");
 const NewPaymentAll = () => import("@/views/payments/Newpayment.vue");
@@ -40,6 +41,11 @@ const routes = [
         path: "person/list",
         name: "person_list",
         component: PersonListView,
+      },
+      {
+        path: "person/:id?",
+        name: "createPerson",
+        component: PersonCreateView,
       },
       {
         path: "profile",

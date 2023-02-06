@@ -25,9 +25,34 @@ export const changePassword = (id, payload) =>
  */
 export const fetchUsers = () => axios.get("/person");
 
+/**
+ * @url PUT /person/:id
+ * @since 1.0
+ */
+export const updatePerson = (id, payload) =>
+  axios.put(`/person/${id}`, payload);
 /*
 
+/**
+ * @url DELETE /person/:id
+ * @since 1.0
+ */
+export const deletePerson = (id) => axios.delete(`/person/${id}`);
 
+/**
+ * @url GET /person/:id
+ * @since 1.0
+ */
+export const getPersonById = (id) => axios.get(`/person/${id}`);
+
+/**
+ * @url POST /person
+ * @since 1.0
+ */
+
+export const createPerson = (payload) => axios.post("/person", payload);
+
+/*
 export const fetchAttendances = (id) => axios.get(`/attendance/${id}`);
 export const putExample = (payload) => axios.put("/payemnt/${}", payload);
 */
