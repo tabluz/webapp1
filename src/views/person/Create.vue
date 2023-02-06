@@ -3,7 +3,7 @@ import { useRoute, useRouter } from "vue-router";
 import { Form, Field } from "vee-validate";
 import { useResponse } from "../../composables/useResponse";
 import { reactive, onMounted, computed, ref } from "vue";
-import { createPerson, updatePerson } from "../../api";
+import { createPerson, updatePerson, getPersonById } from "../../api";
 import { object, string } from "yup";
 
 
@@ -11,7 +11,7 @@ const router = useRouter();
 
 const person_id = ref(null);
 
-const is_edit = computed(() => typeof person_id !== "undefined");
+const is_edit = computed(() => typeof person_id.value !== "undefined");
 
 const person = reactive({
   name: "",
@@ -25,17 +25,29 @@ const person = reactive({
   password: "",
 });
 
-onMounted(() => {
+onMounted(async () => {
   person_id.value = useRoute().params.id;
+  if (is_edit) {
+    const value = await getPersonById(person_id.value);
+    person.name = value.data.name;
+    person.last_name = value.data.last_name;
+    person.date_born_at = value.data.date_born_at;
+    person.dni = value.data.dni;
+    person.number = value.data.number;
+    person.email = value.data.email;
+    person.address = value.data.address;
+    person.user_type = value.data.user_type;
+    person.password = value.data.password;
+  }
 });
 
 const handleSubmit = async (payload) => {
   try {
     let value = null;
-    if (is_edit) {
+    if (!person_id.value) {
       value = await createPerson(payload);
     } else {
-      value = await updatePerson(person_id, payload);
+      value = await updatePerson(person_id.value, payload);
     }
     useResponse().showNotify(value);
     router.push({ name: "person_list" });
@@ -43,11 +55,7 @@ const handleSubmit = async (payload) => {
     useResponse().showNotify(error);
   }
 };
-const state = reactive({
-  dni: "",
-  number: "",
-  password: "",
-});
+
 const schema = object().shape({
   dni: string().min(8).max(8).required("DNI es obligatorio"),
   number: string().min(12).max(12).required("Número de teléfono obligatorio"),
@@ -55,6 +63,7 @@ const schema = object().shape({
     .min(5, "La contraseña debe ser mayor a 5 caracteres")
     .required("Contraseña es requerida"),
 });
+
 </script>
 <template>
   <main id="main-container">
@@ -102,7 +111,7 @@ const schema = object().shape({
                 <div class="col-md-6">
                   <div class="mb-4">
                     <label class="form-label" for="lastname">DNI</label>
-                    <Field id="fi-uname" v-model="state.dni" name="dni" type="dni" class="form-control"
+                    <Field id="fi-uname" v-model="person.dni" name="dni" type="dni" class="form-control"
                       :class="{ 'is-invalid': errors.dni }" placeholder="Por ejem. 15481548" maxlength="8" />
                   </div>
                 </div>

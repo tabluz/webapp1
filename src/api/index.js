@@ -43,7 +43,7 @@ export const deletePerson = (id) => axios.delete(`/person/${id}`);
  * @url GET /person/:id
  * @since 1.0
  */
-export const ListbyId = (id, payload) => axios.get(`/person/${id}`, payload);
+export const getPersonById = (id) => axios.get(`/person/${id}`);
 
 /**
  * @url POST /person
