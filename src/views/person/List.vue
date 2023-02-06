@@ -32,9 +32,14 @@ function showAlert(id) {
     <!-- Full Table -->
     <div class="block block-rounded">
       <div class="block-header block-header-default">
-        <h3 class="block-title">Lista de usuarios registrados</h3>
+        <h3 class="block-title">
+          Lista de usuarios registrados
+        </h3>
         <div class="block-options">
-          <router-link :to="{ name: 'createPerson' }" class="btn btn-alt-success me-1 mb-3">
+          <router-link
+            :to="{ name: 'createPerson' }"
+            class="btn btn-alt-success me-1 mb-3"
+          >
             Agregar nuevo usuario
           </router-link>
         </div>
@@ -49,15 +54,29 @@ function showAlert(id) {
             <thead>
               <tr>
                 <th>NOMBRE</th>
-                <th style="width: 30%">APELLIDO</th>
-                <th style="width: 15%">DNI</th>
-                <th style="width: 15%">CORREO</th>
-                <th class="text-center" style="width: 100px">Actions</th>
+                <th style="width: 30%">
+                  APELLIDO
+                </th>
+                <th style="width: 15%">
+                  DNI
+                </th>
+                <th style="width: 15%">
+                  CORREO
+                </th>
+                <th
+                  class="text-center"
+                  style="width: 100px"
+                >
+                  Actions
+                </th>
               </tr>
             </thead>
 
             <tbody>
-              <template v-for="item in state.users" :key="item.id">
+              <template
+                v-for="item in state.users"
+                :key="item.id"
+              >
                 <tr>
                   <td class="text-center">
                     {{ item.name }}
@@ -73,11 +92,19 @@ function showAlert(id) {
                   </td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <router-link class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Editar"
-                        :to="{ name: 'createPerson', params: { id: item.id } }">
+                      <router-link
+                        class="btn btn-sm btn-alt-secondary"
+                        data-bs-toggle="tooltip"
+                        title="Editar"
+                        :to="{ name: 'createPerson', params: { id: item.id } }"
+                      >
                         <i class="fa fa-fw fa-pencil-alt" />
                       </router-link>
-                      <button type="button" class="btn btn-sm btn-alt-secondary" @click="showAlert(item.id)">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-alt-secondary"
+                        @click="showAlert(item.id)"
+                      >
                         <i class="fa fa-fw fa-times" />
                       </button>
                     </div>
