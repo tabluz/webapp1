@@ -12,6 +12,7 @@ const AuthRecover = () => import("@/views/auth/RecoverPassword.vue");
 const ChangePassword = () => import("../views/auth/ChangePassword.vue");
 
 const ProfileView = () => import("@/views/Profile.vue");
+const PersonListView = () => import("@/views/person/List.vue");
 
 const NotFound = () => import("@/views/error/NotFound.vue");
 const NotAllowed = () => import("@/views/error/NotAllowed.vue");
@@ -30,6 +31,11 @@ const routes = [
         path: "home",
         name: "home",
         component: Dashboard,
+      },
+      {
+        path: "person/list",
+        name: "person_list",
+        component: PersonListView,
       },
       {
         path: "profile",
