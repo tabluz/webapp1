@@ -15,7 +15,7 @@ const { user } = useAuthStore();
           class="img-avatar img-avatar-thumb"
           src="/assets/media/images/user.png"
           alt="Avatar"
-        >
+        />
       </div>
       <h1 class="h2 text-white mb-0">
         {{ user.name }}
@@ -33,28 +33,17 @@ const { user } = useAuthStore();
           <div class="fs-sm fw-semibold text-muted text-uppercase">
             Asistencias
           </div>
-          <a
-            class="link-fx fs-3"
-            href="javascript:void(0)"
-          >0</a>
+          <a class="link-fx fs-3" href="javascript:void(0)">0</a>
         </div>
         <div class="col-6 col-md-3">
-          <div class="fs-sm fw-semibold text-muted text-uppercase">
-            Cursos
-          </div>
-          <a
-            class="link-fx fs-3"
-            href="javascript:void(0)"
-          >10</a>
+          <div class="fs-sm fw-semibold text-muted text-uppercase">Cursos</div>
+          <a class="link-fx fs-3" href="javascript:void(0)">10</a>
         </div>
         <div class="col-6 col-md-3">
           <div class="fs-sm fw-semibold text-muted text-uppercase">
             Actividades
           </div>
-          <a
-            class="link-fx fs-3"
-            href="javascript:void(0)"
-          >5</a>
+          <a class="link-fx fs-3" href="javascript:void(0)">5</a>
         </div>
         <div class="col-6 col-md-3">
           <div class="fs-sm fw-semibold text-muted text-uppercase mb-2">
@@ -88,43 +77,34 @@ const { user } = useAuthStore();
             </div>
             <div class="col-lg-8 col-xl-5">
               <div class="mb-4">
-                <label
-                  class="form-label"
-                  for="phonec"
-                >Celular</label>
+                <label class="form-label" for="phonec">Celular</label>
                 <input
                   id="phonec"
                   type="text"
                   class="form-control"
                   name="phonec"
                   :value="user.number"
-                >
+                />
               </div>
               <div class="mb-4">
-                <label
-                  class="form-label"
-                  for="emailc"
-                >Correo</label>
+                <label class="form-label" for="emailc">Correo</label>
                 <input
                   id="emailc"
                   type="email"
                   class="form-control"
                   name="emailc"
                   :value="user.email"
-                >
+                />
               </div>
               <div class="mb-4">
-                <label
-                  class="form-label"
-                  for="address"
-                >Dirección</label>
+                <label class="form-label" for="address">Dirección</label>
                 <input
                   id="address"
                   type="text"
                   class="form-control"
                   name="address"
                   :value="user.address"
-                >
+                />
               </div>
               <div class="mb-4">
                 <label class="form-label">Foto</label>
@@ -133,25 +113,21 @@ const { user } = useAuthStore();
                     class="img-avatar"
                     src="/assets/media/images/user.png"
                     alt=""
-                  >
+                  />
                 </div>
                 <div class="mb-4">
-                  <label
-                    for="one-profile-edit-avatar"
-                    class="form-label"
-                  >elegir una imagen</label>
+                  <label for="one-profile-edit-avatar" class="form-label"
+                    >elegir una imagen</label
+                  >
                   <input
                     id="one-profile-edit-avatar"
                     class="form-control"
                     type="file"
-                  >
+                  />
                 </div>
               </div>
               <div class="mb-4">
-                <button
-                  type="submit"
-                  class="btn btn-alt-primary"
-                >
+                <button type="submit" class="btn btn-alt-primary">
                   Actualizar
                 </button>
               </div>
@@ -173,50 +149,44 @@ const { user } = useAuthStore();
             </div>
             <div class="col-lg-8 col-xl-5">
               <div class="mb-4">
-                <label
-                  class="form-label"
-                  for="current_password"
-                >Tu contraseña actual</label>
+                <label class="form-label" for="current_password"
+                  >Tu contraseña actual</label
+                >
                 <input
                   id="current_password"
                   type="password"
                   class="form-control"
                   name="current_password"
-                >
+                />
               </div>
               <div class="row mb-4">
                 <div class="col-12">
-                  <label
-                    class="form-label"
-                    for="new_password"
-                  >Tu nueva contraseña</label>
+                  <label class="form-label" for="new_password"
+                    >Tu nueva contraseña</label
+                  >
                   <input
                     id="new_password"
                     type="password"
                     class="form-control"
                     name="new_password"
-                  >
+                  />
                 </div>
               </div>
               <div class="row mb-4">
                 <div class="col-12">
-                  <label
-                    class="form-label"
-                    for="confirm_password"
-                  >Confirmar contraseña</label>
+                  <label class="form-label" for="confirm_password"
+                    >Confirmar contraseña</label
+                  >
                   <input
                     id="confirm_password"
                     type="password"
                     class="form-control"
                     name="confirm_password"
-                  >
+                  />
                 </div>
               </div>
               <div class="mb-4">
-                <button
-                  type="submit"
-                  class="btn btn-alt-primary"
-                >
+                <button type="submit" class="btn btn-alt-primary">
                   Actualizar
                 </button>
               </div>

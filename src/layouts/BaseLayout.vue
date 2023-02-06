@@ -97,15 +97,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    id="page-container"
-    :class="classContainer"
-  >
+  <div id="page-container" :class="classContainer">
     <!-- Page Loader -->
-    <div
-      id="page-loader"
-      :class="{ show: store.settings.pageLoader }"
-    />
+    <div id="page-loader" :class="{ show: store.settings.pageLoader }" />
 
     <!-- Page Overlay -->
     <div

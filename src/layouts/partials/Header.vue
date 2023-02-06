@@ -35,7 +35,8 @@ const { getEsential, logout } = useAuthStore();
                 <i class="fa fa-fw fa-bars" />
               </button>
               <strong class="text-warning">
-                Hoy es {{ new Date().toLocaleDateString() }}</strong>
+                Hoy es {{ new Date().toLocaleDateString() }}</strong
+              >
               <!-- END Toggle Mini Sidebar -->
             </slot>
           </div>
@@ -59,7 +60,7 @@ const { getEsential, logout } = useAuthStore();
                     :src="`${getEsential.image}`"
                     alt="Header Avatar"
                     style="width: 21px"
-                  >
+                  />
                   <span class="d-none d-sm-inline-block ms-2">{{
                     getEsential.username
                   }}</span>
@@ -78,7 +79,7 @@ const { getEsential, logout } = useAuthStore();
                       class="img-avatar img-avatar48 img-avatar-thumb"
                       :src="`${getEsential.image}`"
                       alt="Header Avatar"
-                    >
+                    />
                     <p class="mt-2 mb-0 fw-medium">
                       {{ getEsential.username }}
                     </p>
@@ -101,10 +102,7 @@ const { getEsential, logout } = useAuthStore();
                       <span class="fs-sm fw-medium">Chat</span>
                     </a>
                   </div>
-                  <div
-                    role="separator"
-                    class="dropdown-divider m-0"
-                  />
+                  <div role="separator" class="dropdown-divider m-0" />
                   <div class="p-2">
                     <button
                       class="dropdown-item d-flex align-items-center justify-content-between"

@@ -86,10 +86,7 @@ onMounted(() => {
       <div class="content-header">
         <slot name="header">
           <!-- Logo -->
-          <RouterLink
-            :to="{ name: 'home' }"
-            class="fw-semibold text-dual"
-          >
+          <RouterLink :to="{ name: 'home' }" class="fw-semibold text-dual">
             <span class="smini-visible">
               <i class="fa fa-circle-notch text-primary" />
             </span>
@@ -115,14 +112,8 @@ onMounted(() => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <i
-                  v-if="!store.settings.darkMode"
-                  class="far fa-moon"
-                />
-                <i
-                  v-if="store.settings.darkMode"
-                  class="fa fa-moon"
-                />
+                <i v-if="!store.settings.darkMode" class="far fa-moon" />
+                <i v-if="store.settings.darkMode" class="fa fa-moon" />
               </button>
               <div
                 class="dropdown-menu dropdown-menu-end dropdown-menu fs-sm smini-hide border-0"
@@ -138,11 +129,12 @@ onMounted(() => {
                       type="radio"
                       value="light"
                       @change="onDarkModeRadioChange"
-                    >
+                    />
                     <label
                       class="form-check-label fw-medium"
                       for="radio-dark-mode-off"
-                    >Dia</label>
+                      >Dia</label
+                    >
                   </div>
                   <div class="form-check">
                     <input
@@ -152,11 +144,11 @@ onMounted(() => {
                       type="radio"
                       value="dark"
                       @change="onDarkModeRadioChange"
-                    >
+                    />
                     <label
                       class="form-check-label fw-medium"
                       for="radio-dark-mode-on"
-                    >Noche
+                      >Noche
                     </label>
                   </div>
                   <div class="form-check mb-0">
@@ -167,7 +159,7 @@ onMounted(() => {
                       type="radio"
                       value="system"
                       @change="onDarkModeRadioChange"
-                    >
+                    />
                     <label
                       class="form-check-label fw-medium"
                       for="radio-dark-mode-system"
@@ -307,10 +299,7 @@ onMounted(() => {
       <!-- END Side Header -->
 
       <!-- Sidebar Scrolling -->
-      <div
-        id="simplebar-sidebar"
-        class="js-sidebar-scroll"
-      >
+      <div id="simplebar-sidebar" class="js-sidebar-scroll">
         <slot name="content">
           <!-- Side Navigation -->
           <div class="content-side">

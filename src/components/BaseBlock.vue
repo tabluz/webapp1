@@ -372,10 +372,10 @@ defineExpose({
         <div
           v-if="
             $slots.options ||
-              btnOptionFullscreen ||
-              btnOptionPinned ||
-              btnOptionContent ||
-              btnOptionClose
+            btnOptionFullscreen ||
+            btnOptionPinned ||
+            btnOptionContent ||
+            btnOptionClose
           "
           class="block-options space-x-1"
           :class="classContainerOptions"
@@ -435,10 +435,7 @@ defineExpose({
       class="block-content"
       :class="classContainerContent"
     >
-      <div
-        v-if="props.ribbon"
-        class="ribbon-box"
-      >
+      <div v-if="props.ribbon" class="ribbon-box">
         <slot name="ribbon">
           {{ ribbon }}
         </slot>

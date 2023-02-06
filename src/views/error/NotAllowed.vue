@@ -8,9 +8,7 @@
         <div class="content content-full overflow-hidden">
           <div class="py-4">
             <!-- Error Header -->
-            <h1 class="display-1 fw-bolder text-smooth">
-              403
-            </h1>
+            <h1 class="display-1 fw-bolder text-smooth">403</h1>
             <h2 class="h4 fw-normal text-muted mb-5">
               Esto no esta habilitado para ti
             </h2>
@@ -20,17 +18,9 @@
       </div>
       <div class="content content-full text-muted fs-sm fw-medium">
         <!-- Error Footer -->
-        <p class="mb-1">
-          Aun puedes
-        </p>
-        <a
-          class="link-fx"
-          href="javascript:void(0)"
-        >Reportar</a> O
-        <RouterLink
-          :to="{ name: 'home' }"
-          class="link-fx"
-        >
+        <p class="mb-1">Aun puedes</p>
+        <a class="link-fx" href="javascript:void(0)">Reportar</a> O
+        <RouterLink :to="{ name: 'home' }" class="link-fx">
           Volver al inicio
         </RouterLink>
         <!-- END Error Footer -->

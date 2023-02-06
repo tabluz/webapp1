@@ -52,10 +52,7 @@ const classContainerInner = computed(() => {
     :class="classContainer"
     class="bg-image"
   >
-    <div
-      v-if="innerClass"
-      :class="classContainerInner"
-    >
+    <div v-if="innerClass" :class="classContainerInner">
       <slot />
     </div>
     <slot v-else />

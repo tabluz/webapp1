@@ -24,9 +24,7 @@ async function onSubmit(e) {
 <template>
   <!-- Hero Content -->
   <div class="text-center pt-">
-    <h2 class="h2 text-white mb-0">
-      Crear pago
-    </h2>
+    <h2 class="h2 text-white mb-0">Crear pago</h2>
   </div>
   <!-- END Hero Content -->
 
@@ -45,31 +43,13 @@ async function onSubmit(e) {
               </div>
             </div>
             <div class="mb-5">
-              <select
-                v-model="state.paymenttype"
-                class="form-select"
-              >
-                <option
-                  value=""
-                  disabled
-                >
-                  Tipo de pago
-                </option>
-                <option value="Inscripción">
-                  Inscripción
-                </option>
-                <option value="Matrícula">
-                  Matrícula
-                </option>
-                <option value="Mensualidad">
-                  Mensualidad
-                </option>
-                <option value="Saldo pendiente">
-                  Saldo pendiente
-                </option>
-                <option value="Libros">
-                  Libros
-                </option>
+              <select v-model="state.paymenttype" class="form-select">
+                <option value="" disabled>Tipo de pago</option>
+                <option value="Inscripción">Inscripción</option>
+                <option value="Matrícula">Matrícula</option>
+                <option value="Mensualidad">Mensualidad</option>
+                <option value="Saldo pendiente">Saldo pendiente</option>
+                <option value="Libros">Libros</option>
               </select>
             </div>
 
@@ -108,11 +88,7 @@ async function onSubmit(e) {
             <div class="mb-4" />
 
             <div class="center">
-              <button
-                id="buttom"
-                type="submit"
-                class="btn btn-alt-primary"
-              >
+              <button id="buttom" type="submit" class="btn btn-alt-primary">
                 Guardar
               </button>
             </div>

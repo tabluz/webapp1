@@ -49,10 +49,7 @@ const check = async (state = "presente") => {
   <div class="content">
     <div class="row">
       <div class="col-md-4">
-        <AttendanceCard
-          :current="state.current"
-          @check="check"
-        />
+        <AttendanceCard :current="state.current" @check="check" />
       </div>
       <div class="col-md-8">
         <BaseBlock title="Reporte">
@@ -64,7 +61,7 @@ const check = async (state = "presente") => {
                 class="form-control form-control-alt"
                 name="one-ecom-products-search"
                 placeholder="Buscar por usuario o servicio"
-              >
+              />
               <span class="input-group-text bg-body border-0">
                 <i class="fa fa-search" />
               </span>
@@ -74,25 +71,15 @@ const check = async (state = "presente") => {
             <table class="table table-borderless table-striped table-vcenter">
               <thead>
                 <tr>
-                  <th
-                    class="text-center"
-                    style="width: 100px"
-                  >
-                    Dia
-                  </th>
-                  <th class="d-none d-md-table-cell">
-                    Estado
-                  </th>
+                  <th class="text-center" style="width: 100px">Dia</th>
+                  <th class="d-none d-md-table-cell">Estado</th>
                   <th class="d-none d-sm-table-cell text-center">
                     Hora de ingreso
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <template
-                  v-for="item in state.attendances"
-                  :key="item.id"
-                >
+                <template v-for="item in state.attendances" :key="item.id">
                   <tr>
                     <td>
                       <b>

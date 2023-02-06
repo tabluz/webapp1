@@ -48,15 +48,9 @@ async function onSubmit() {
   >
     <div class="row g-0 justify-content-center">
       <div class="col-sm-8 col-xl-4">
-        <Form
-          v-slot="{ errors }"
-          @submit="onSubmit"
-        >
+        <Form v-slot="{ errors }" @submit="onSubmit">
           <div class="mb-4">
-            <label
-              class="form-label"
-              for="fi-uname"
-            > Codigo SMS </label>
+            <label class="form-label" for="fi-uname"> Codigo SMS </label>
             <Field
               id="fi-uname"
               v-model="state.smscode"
@@ -75,10 +69,7 @@ async function onSubmit() {
             </div>
           </div>
           <div class="mb-4">
-            <label
-              class="form-label"
-              for="fi-newpassword"
-            >
+            <label class="form-label" for="fi-newpassword">
               Nueva contraseña
             </label>
             <Field
@@ -98,10 +89,7 @@ async function onSubmit() {
             </div>
           </div>
           <div class="mb-4">
-            <label
-              class="form-label"
-              for="fi-confirm"
-            >
+            <label class="form-label" for="fi-confirm">
               Confirmar Contraseña
             </label>
             <Field
@@ -126,11 +114,13 @@ async function onSubmit() {
               v-model="state.showpassword"
               type="checkbox"
               class="form-check-input"
+            />
+            <label for="showpassword"
+              >{{
+                state.showpassword ? "Ocultar" : "Mostrar"
+              }}
+              Contraseña</label
             >
-            <label for="showpassword">{{
-              state.showpassword ? "Ocultar" : "Mostrar"
-            }}
-              Contraseña</label>
           </div>
           <div
             v-show="state.res.message"
@@ -150,10 +140,7 @@ async function onSubmit() {
               </RouterLink>
             </div>
             <div>
-              <button
-                type="submit"
-                class="btn btn-lg btn-alt-success"
-              >
+              <button type="submit" class="btn btn-lg btn-alt-success">
                 Enviar
               </button>
             </div>

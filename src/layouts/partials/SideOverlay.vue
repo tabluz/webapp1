@@ -31,24 +31,18 @@ onUnmounted(() => {
       <div class="content-header border-bottom">
         <slot name="header">
           <!-- User Avatar -->
-          <a
-            class="img-link me-1"
-            href="javascript:void(0)"
-          >
+          <a class="img-link me-1" href="javascript:void(0)">
             <img
               class="img-avatar img-avatar32"
               src="/assets/media/images/add.png"
               alt="Icon"
-            >
+            />
           </a>
           <!-- END User Avatar -->
 
           <!-- User Info -->
           <div class="ms-2">
-            <a
-              class="text-dark fw-semibold fs-sm"
-              href="javascript:void(0)"
-            >
+            <a class="text-dark fw-semibold fs-sm" href="javascript:void(0)">
               Aqui de nuevo
             </a>
           </div>
@@ -71,11 +65,7 @@ onUnmounted(() => {
         <!-- Side Content -->
         <div class="content-side">
           <!-- Side Overlay Tabs -->
-          <BaseBlock
-            transparent
-            :rounded="false"
-            class="pull-x pull-t"
-          >
+          <BaseBlock transparent :rounded="false" class="pull-x pull-t">
             hello world
           </BaseBlock>
           <!-- END Side Overlay Tabs -->

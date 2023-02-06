@@ -1,10 +1,7 @@
 <script setup></script>
 
 <template>
-  <BasePageHeading
-    title="Aula Virtual"
-    subtitle="Bienvenido querido usuario!"
-  >
+  <BasePageHeading title="Aula Virtual" subtitle="Bienvenido querido usuario!">
     <template #extra>
       <button
         v-click-ripple

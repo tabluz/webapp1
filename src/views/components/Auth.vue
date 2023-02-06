@@ -69,11 +69,7 @@ export default {
             <!-- Header -->
             <div class="text-center mb-5">
               <p class="mb-3">
-                <img
-                  src="/assets/media/images/logo.png"
-                  width="100"
-                  alt=""
-                >
+                <img src="/assets/media/images/logo.png" width="100" alt="" />
               </p>
               <h1 class="fw-bold mb-2">
                 {{ title }}
