@@ -11,11 +11,20 @@ const route = useRoute();
 const state = reactive({
   smscode: "",
   newpassword: "",
+  confirmPassword: "",
   res: {},
+  showpassword: false,
 });
 
 async function onSubmit(e) {
   try {
+    if (state.newpassword != state.confirmPassword) {
+      state.res = {
+        ok: false,
+        message: "Las contraseñas no coinciden",
+      };
+      return;
+    }
     const id = route.params.id;
     const data = await changePassword(id, {
       temporal_code: state.smscode,
@@ -60,12 +69,14 @@ async function onSubmit(e) {
             </div>
           </div>
           <div class="mb-4">
-            <label class="form-label" for="fi-number"> Nueva contraseña </label>
+            <label class="form-label" for="fi-newpassword">
+              Nueva contraseña
+            </label>
             <Field
               id="fi-newpassword"
               v-model="state.newpassword"
               name="newpassword"
-              type="text"
+              :type="state.showpassword ? 'text' : 'password'"
               class="form-control form-control-lg form-control-alt py-3"
               :class="{ 'is-invalid': errors.newpassword }"
               placeholder="********"
@@ -76,6 +87,40 @@ async function onSubmit(e) {
             >
               {{ errors.newpassword }}
             </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label" for="fi-confirm">
+              Confirmar Contraseña
+            </label>
+            <Field
+              id="fi-confirm"
+              v-model="state.confirmPassword"
+              name="confirmPassword"
+              :type="state.showpassword ? 'text' : 'password'"
+              class="form-control form-control-lg form-control-alt py-3"
+              :class="{ 'is-invalid': errors.confirmPassword }"
+              placeholder="********"
+            />
+            <div
+              v-show="errors.confirmPassword"
+              class="invalid-feedback animated fadeIn"
+            >
+              {{ errors.confirmPassword }}
+            </div>
+          </div>
+          <div class="form-check mb-2">
+            <input
+              id="showpassword"
+              v-model="state.showpassword"
+              type="checkbox"
+              class="form-check-input"
+            />
+            <label for="showpassword"
+              >{{
+                state.showpassword ? "Ocultar" : "Mostrar"
+              }}
+              Contraseña</label
+            >
           </div>
           <div
             v-show="state.res.message"
