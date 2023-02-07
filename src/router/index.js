@@ -16,6 +16,7 @@ const PersonListView = () => import("@/views/person/List.vue");
 
 const PaymentsListView = () => import("@/views/payments/PaymentsList.vue");
 const NewPaymentAll = () => import("@/views/payments/Newpayment.vue");
+const EditPayment = () => import("@/views/payments/EditPayment.vue");
 
 const NotFound = () => import("@/views/error/NotFound.vue");
 const NotAllowed = () => import("@/views/error/NotAllowed.vue");
@@ -46,9 +47,14 @@ const routes = [
         component: ProfileView,
       },
       {
-        path: "payments",
+        path: "payments/:id?",
         name: "payments",
         component: PaymentsListView,
+      },
+      {
+        path: "payments/:id",
+        name: "editpayments",
+        component: EditPayment,
       },
       {
         path: "newpayment",
