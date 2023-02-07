@@ -25,5 +25,10 @@ export default {
       to: "home",
       icon: "fa fa-check",
     },
+    {
+      name: "Pagos",
+      to: "payments",
+      icon: "fa-solid fa-receipt",
+    }
   ],
 };
