@@ -25,9 +25,29 @@ export const changePassword = (id, payload) =>
  */
 export const fetchUsers = () => axios.get("/person");
 
+
+/**
+ * @url GET /usercycle
+ * @since 1.0
+ */
+
+export const fetchSection = () => axios.get("/salon");
+
+
+
+/**
+ * @url GET /cycle
+ * @since 1.0
+ */
+
+export const fetchCycle = () => axios.get("/cycle");
+
+
+
+
+
+
 /*
-
-
 export const fetchAttendances = (id) => axios.get(`/attendance/${id}`);
 export const putExample = (payload) => axios.put("/payemnt/${}", payload);
 */
