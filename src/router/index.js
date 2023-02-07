@@ -14,8 +14,6 @@ const ChangePassword = () => import("../views/auth/ChangePassword.vue");
 const ProfileView = () => import("@/views/Profile.vue");
 const PersonListView = () => import("@/views/person/List.vue");
 const PersonCreateView = () => import("@/views/person/Create.vue");
-const DeleteView = () => import("@/views/person/List.vue");
-const PersonListbyIdView = () => import("@/views/person/Create.vue");
 
 const NotFound = () => import("@/views/error/NotFound.vue");
 const NotAllowed = () => import("@/views/error/NotAllowed.vue");
@@ -41,22 +39,7 @@ const routes = [
         component: PersonListView,
       },
       {
-        path: "person/list/:id",
-        name: "person_list",
-        component: PersonListbyIdView,
-      },
-      {
         path: "person/:id?",
-        name: "updatePerson",
-        component: PersonUpdateView,
-      },
-      {
-        path: "person/:id",
-        name: "delete_person",
-        component: DeleteView,
-      },
-      {
-        path: "person",
         name: "createPerson",
         component: PersonCreateView,
       },
