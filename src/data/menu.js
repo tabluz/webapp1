@@ -29,6 +29,6 @@ export default {
       name: "Pagos",
       to: "payments",
       icon: "fa-solid fa-receipt",
-    }
+    },
   ],
 };

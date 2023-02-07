@@ -21,48 +21,65 @@ onMounted(() => {
 <template>
   <div class="content">
     <BaseBlock title="PAGOS">
-        <template #options>
-  
+      <template #options>
+        <RouterLink
+          :to="{ name: 'newpayment' }"
+          class="btn btn-lg btn-alt-success"
+          style="font-size: 80%"
+        >
+          Agregar nuevo pago
+        </RouterLink>
       </template>
-    <p class="fs-sm text-muted">
+      <p class="fs-sm text-muted">
         A continuación se muestran los pagos creados:
       </p>
 
-
       <div class="table-responsive">
         <table class="table table-bordered table-striped table-vcenter">
-            <thead>
+          <thead>
             <tr>
-            <th style="width: 0%">ID</th>
-            <th style="width: 4%">Tipo de pago</th>
+              <th style="width: 0%">ID</th>
+              <th style="width: 4%">Tipo de pago</th>
               <th style="width: 25%">Descripción</th>
-              <th style="width: 4%">Fecha de pago</th>
+              <th style="width: 5%">Fecha de pago</th>
               <th class="text-center" style="width: 0%">Acciones</th>
-
             </tr>
-                </thead>
-                    <tbody>
-                        <tr v-for="payment in state.payments">
-                            <td class="fw-semibold fs-sm">{{ payment.id }}</td>
+          </thead>
+          <tbody>
+            <tr v-for="payment in state.payments">
+              <td class="fw-semibold fs-sm">
+                {{ payment.id }}
+              </td>
 
-                            <td class="fw-semibold fs-sm">{{ payment.payment_type }}</td>
-                            <td style= 'font-size:80%' class="text-muted"><i>{{ payment.description }}</i></td>
-                            <td >{{ payment.expiration_date.replace(/T.*/,'').split('-').reverse().join('-') }} </td>
-                            <td class="text-center">
+              <td class="fw-semibold fs-sm">
+                {{ payment.payment_type }}
+              </td>
+              <td style="font-size: 80%" class="text-muted">
+                <i>{{ payment.description }}</i>
+              </td>
+              <td>
+                {{
+                  payment.expiration_date
+                    .replace(/T.*/, "")
+                    .split("-")
+                    .reverse()
+                    .join("-")
+                }}
+              </td>
+              <td class="text-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-alt-secondary">
-                    <i class="fa fa-fw fa-pencil-alt"></i>
+                    <i class="fa fa-fw fa-pencil-alt" />
                   </button>
                   <button type="button" class="btn btn-sm btn-alt-secondary">
-                    <i class="fa fa-fw fa-times"></i>
+                    <i class="fa fa-fw fa-times" />
                   </button>
                 </div>
               </td>
-                            
-                        </tr>
-                    </tbody>
-                </table>
-            </div> 
-        </BaseBlock>    
-    </div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </BaseBlock>
+  </div>
 </template>
