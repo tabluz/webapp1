@@ -18,8 +18,5 @@ onMounted(() => {
 });
 </script>
 <template>
-  <table>
-    
-  </table>
-
+  <table />
 </template>

@@ -14,7 +14,8 @@ const ChangePassword = () => import("../views/auth/ChangePassword.vue");
 const ProfileView = () => import("@/views/Profile.vue");
 const PersonListView = () => import("@/views/person/List.vue");
 
-const PaymentsListView = () => import("@/views/payments/PaymentsList.vue")
+const PaymentsListView = () => import("@/views/payments/PaymentsList.vue");
+const NewPaymentAll = () => import("@/views/payments/Newpayment.vue");
 
 const NotFound = () => import("@/views/error/NotFound.vue");
 const NotAllowed = () => import("@/views/error/NotAllowed.vue");
@@ -48,7 +49,12 @@ const routes = [
         path: "payments",
         name: "payments",
         component: PaymentsListView,
-      }
+      },
+      {
+        path: "newpayment",
+        name: "newpayment",
+        component: NewPaymentAll,
+      },
     ],
   },
   {

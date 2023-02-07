@@ -32,31 +32,14 @@ export const fetchAttendances = (id) => axios.get(`/attendance/${id}`);
 export const putExample = (payload) => axios.put("/payemnt/${}", payload);
 */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * @url GET /payment
  * @since 1.0
  */
 export const paymentsAll = () => axios.get("/payment");
+
+/**
+ * @url POST /payment
+ * @since 1.0
+ */
+export const createPayment = (payload) => axios.post("/payment", payload);
