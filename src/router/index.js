@@ -13,6 +13,9 @@ const ChangePassword = () => import("../views/auth/ChangePassword.vue");
 
 const ProfileView = () => import("@/views/Profile.vue");
 const PersonListView = () => import("@/views/person/List.vue");
+//crud cycle
+const CycleListView = () => import("@/views/cycle/List.vue");
+const CycleCreate = () => import("@/views/cycle/Create.vue");
 
 const NotFound = () => import("@/views/error/NotFound.vue");
 const NotAllowed = () => import("@/views/error/NotAllowed.vue");
@@ -37,10 +40,21 @@ const routes = [
         name: "person_list",
         component: PersonListView,
       },
+      
       {
         path: "profile",
         name: "profile",
         component: ProfileView,
+      },
+      {
+        path: "cycle/list",
+        name: "cycle_list",
+        component: CycleListView,
+      },
+      {
+        path: "cycle/create",
+        name: "cycle_create",
+        component: CycleCreate,
       },
     ],
   },

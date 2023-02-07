@@ -25,5 +25,10 @@ export default {
       to: "home",
       icon: "fa fa-check",
     },
+    {
+      name: "Ciclos",
+      to: "cycle_list",
+      icon: "fa-brands fa-readme",
+    },
   ],
 };
