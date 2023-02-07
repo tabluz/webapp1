@@ -2,7 +2,7 @@
 import { reactive } from "vue";
 import { Form, Field } from "vee-validate";
 import Auth from "../components/Auth.vue";
-import { changePassword, sendToMeSms } from "../../api/index";
+import { changePassword } from "../../api/index";
 import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
@@ -14,7 +14,7 @@ const state = reactive({
   res: {},
 });
 
-async function onSubmit(e) {
+async function onSubmit() {
   try {
     const id = route.params.id;
     const data = await changePassword(id, {
@@ -39,9 +39,15 @@ async function onSubmit(e) {
   >
     <div class="row g-0 justify-content-center">
       <div class="col-sm-8 col-xl-4">
-        <Form v-slot="{ errors }" @submit="onSubmit">
+        <Form
+          v-slot="{ errors }"
+          @submit="onSubmit"
+        >
           <div class="mb-4">
-            <label class="form-label" for="fi-uname"> Codigo SMS </label>
+            <label
+              class="form-label"
+              for="fi-uname"
+            > Codigo SMS </label>
             <Field
               id="fi-uname"
               v-model="state.smscode"
@@ -60,7 +66,10 @@ async function onSubmit(e) {
             </div>
           </div>
           <div class="mb-4">
-            <label class="form-label" for="fi-number"> Nueva contraseña </label>
+            <label
+              class="form-label"
+              for="fi-number"
+            > Nueva contraseña </label>
             <Field
               id="fi-newpassword"
               v-model="state.newpassword"
@@ -95,7 +104,10 @@ async function onSubmit(e) {
               </RouterLink>
             </div>
             <div>
-              <button type="submit" class="btn btn-lg btn-alt-success">
+              <button
+                type="submit"
+                class="btn btn-lg btn-alt-success"
+              >
                 Enviar
               </button>
             </div>

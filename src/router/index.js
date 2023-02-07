@@ -12,6 +12,7 @@ const AuthRecover = () => import("@/views/auth/RecoverPassword.vue");
 const ChangePassword = () => import("../views/auth/ChangePassword.vue");
 
 const ProfileView = () => import("@/views/Profile.vue");
+const AttendanceView = () => import("@/views/Attendance.vue");
 
 const NotFound = () => import("@/views/error/NotFound.vue");
 const NotAllowed = () => import("@/views/error/NotAllowed.vue");
@@ -35,6 +36,11 @@ const routes = [
         path: "profile",
         name: "profile",
         component: ProfileView,
+      },
+      {
+        path: "attendance",
+        name: "attendance",
+        component: AttendanceView,
       },
     ],
   },

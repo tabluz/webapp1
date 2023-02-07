@@ -3,7 +3,7 @@ import { reactive } from "vue";
 import { Form, Field } from "vee-validate";
 import Auth from "../components/Auth.vue";
 import { sendToMeSms } from "../../api/index";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 // Input state variables
@@ -13,7 +13,7 @@ const state = reactive({
   res: {},
 });
 
-async function onSubmit(e) {
+async function onSubmit() {
   try {
     const res = await sendToMeSms({
       dni: state.dni,
@@ -37,9 +37,15 @@ async function onSubmit(e) {
   >
     <div class="row g-0 justify-content-center">
       <div class="col-sm-8 col-xl-4">
-        <Form v-slot="{ errors }" @submit="onSubmit">
+        <Form
+          v-slot="{ errors }"
+          @submit="onSubmit"
+        >
           <div class="mb-4">
-            <label class="form-label" for="fi-uname"> DNI </label>
+            <label
+              class="form-label"
+              for="fi-uname"
+            > DNI </label>
             <Field
               id="fi-uname"
               v-model="state.dni"
@@ -50,12 +56,18 @@ async function onSubmit(e) {
               placeholder="Por ejemplo 15481548"
             />
 
-            <div v-show="errors.dni" class="invalid-feedback animated fadeIn">
+            <div
+              v-show="errors.dni"
+              class="invalid-feedback animated fadeIn"
+            >
               {{ errors.dni }}
             </div>
           </div>
           <div class="mb-4">
-            <label class="form-label" for="fi-number">Numero de celular</label>
+            <label
+              class="form-label"
+              for="fi-number"
+            >Numero de celular</label>
             <Field
               id="fi-number"
               v-model="state.number"
@@ -90,7 +102,10 @@ async function onSubmit(e) {
               </RouterLink>
             </div>
             <div>
-              <button type="submit" class="btn btn-lg btn-alt-success">
+              <button
+                type="submit"
+                class="btn btn-lg btn-alt-success"
+              >
                 Solicitar
               </button>
             </div>

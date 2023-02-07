@@ -11,13 +11,8 @@ export default {
       icon: "si si-user",
     },
     {
-      name: "Aula",
-      to: "home",
-      icon: "si si-user",
-    },
-    {
       name: "Asistencia",
-      to: "home",
+      to: "attendance",
       icon: "fa fa-check",
     },
   ],

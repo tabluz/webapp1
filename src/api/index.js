@@ -18,7 +18,15 @@ export const sendToMeSms = (payload) => axios.post("/login/sendcode", payload);
  */
 export const changePassword = (id, payload) =>
   axios.put(`/login/verifycode/${id}`, payload);
-/*
-export const fetchAttendances = (id) => axios.get(`/attendance/${id}`);
-export const putExample = (payload) => axios.put("/payemnt/${}", payload);
-*/
+
+/**
+ * @url POST /attendance
+ * @since 1.0
+ */
+export const checkAttendance = (payload) => axios.post("/attendance", payload);
+
+/**
+ * @url GET /attendance/:id
+ * @since 1.0
+ */
+export const fetchAttendance = (id) => axios.get(`/attendance/${id}`);

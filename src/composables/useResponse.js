@@ -11,7 +11,7 @@ const toast = Swal.mixin({
 });
 export const useResponse = () => {
   function showAlert(payload, maybeerror = false) {
-    const { ok, message } = payload;
+    const { ok = true, message } = payload;
     if (!payload) {
       if (maybeerror) {
         return {
