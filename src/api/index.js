@@ -49,6 +49,7 @@ export const ListbyId = (id, payload) => axios.get(`/person/${id}`, payload);
  * @url POST /person
  * @since 1.0
  */
+
 export const createPerson = (payload) => axios.post("/person", payload);
 
 /*
