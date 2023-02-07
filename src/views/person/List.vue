@@ -80,7 +80,7 @@ function showAlert(id) {
                         class="btn btn-sm btn-alt-secondary"
                         data-bs-toggle="tooltip"
                         title="Editar"
-                        :to="{ name: 'personCreate', params: { id: item.id } }"
+                        :to="{ name: 'createPerson', params: { id: item.id } }"
                       >
                         <i class="fa fa-fw fa-pencil-alt" />
                       </router-link>
