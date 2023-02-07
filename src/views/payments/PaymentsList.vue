@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, onMounted } from "vue";
-import { paymentsAll } from "../../api";
+import { useResponse } from "../../composables/useResponse";
+import { paymentsAll, deletePayment } from "../../api";
 
 const state = reactive({
   payments: [],
@@ -16,6 +17,15 @@ async function fetchData() {
 onMounted(() => {
   fetchData();
 });
+
+function showAlert(id) {
+  const response = useResponse();
+  response.confirm("¿Está seguro?", async () => {
+    const value = await deletePayment(id);
+    response.showAlert(value);
+    fetchData();
+  });
+}
 </script>
 
 <template>
@@ -68,10 +78,18 @@ onMounted(() => {
               </td>
               <td class="text-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-alt-secondary">
-                    <i class="fa fa-fw fa-pencil-alt" />
-                  </button>
-                  <button type="button" class="btn btn-sm btn-alt-secondary">
+                  <RouterLink
+                    :to="{ name: 'editpayments', params: { id: payment.id } }"
+                  >
+                    <button type="button" class="btn btn-sm btn-alt-secondary">
+                      <i class="fa fa-fw fa-pencil-alt" />
+                    </button>
+                  </RouterLink>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-alt-secondary"
+                    @click="showAlert(payment.id)"
+                  >
                     <i class="fa fa-fw fa-times" />
                   </button>
                 </div>
