@@ -43,3 +43,16 @@ export const paymentsAll = () => axios.get("/payment");
  * @since 1.0
  */
 export const createPayment = (payload) => axios.post("/payment", payload);
+
+/**
+ * @url PUT /payment:id
+ * @since 1.0
+ */
+export const editPayment = (id, payload) =>
+  axios.put(`/payment/${id}`, payload);
+
+/**
+ * @url PUT /payment:id
+ * @since 1.0
+ */
+export const deletePayment = (id) => axios.delete(`/payment/${id}`);
