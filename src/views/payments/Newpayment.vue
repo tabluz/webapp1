@@ -11,7 +11,7 @@ const state = reactive({
   res: {},
 });
 
-async function onSubmit(e) {
+async function onSubmit() {
   const data = await createPayment({
     payment_type: state.paymenttype,
     description: state.descriptionpayment,
@@ -72,7 +72,7 @@ async function onSubmit(e) {
               />
             </div>
 
-            <div class="mb-4"></div>
+            <div class="mb-4" />
 
             <div
               v-show="state.res.message"

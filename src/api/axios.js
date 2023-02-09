@@ -12,7 +12,7 @@ instance.interceptors.request.use(
   (config) => {
     const { token } = useAuthStore();
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `${token}`;
     }
     return config;
   },

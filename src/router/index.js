@@ -13,10 +13,12 @@ const ChangePassword = () => import("../views/auth/ChangePassword.vue");
 
 const ProfileView = () => import("@/views/Profile.vue");
 const PersonListView = () => import("@/views/person/List.vue");
+const PersonCreateView = () => import("@/views/person/Create.vue");
 
 const PaymentsListView = () => import("@/views/payments/PaymentsList.vue");
 const NewPaymentAll = () => import("@/views/payments/Newpayment.vue");
 const EditPayment = () => import("@/views/payments/EditPayment.vue");
+const AttendanceView = () => import("@/views/Attendance.vue");
 
 const NotFound = () => import("@/views/error/NotFound.vue");
 const NotAllowed = () => import("@/views/error/NotAllowed.vue");
@@ -42,6 +44,11 @@ const routes = [
         component: PersonListView,
       },
       {
+        path: "person/:id?",
+        name: "createPerson",
+        component: PersonCreateView,
+      },
+      {
         path: "profile",
         name: "profile",
         component: ProfileView,
@@ -60,6 +67,11 @@ const routes = [
         path: "newpayment",
         name: "newpayment",
         component: NewPaymentAll,
+      },
+      {
+        path: "attendance",
+        name: "attendance",
+        component: AttendanceView,
       },
     ],
   },
