@@ -124,14 +124,23 @@ function linkClicked(e, submenu) {
       <!-- Heading -->
       {{ node.heading ? node.name : "" }}
       <!-- Normal Link -->
-      <div v-if="!node.heading && !node.sub" @click="linkClicked($event)">
+      <div
+        v-if="!node.heading && !node.sub"
+        @click="linkClicked($event)"
+      >
         <RouterLink
           :to="node.to && node.to !== '#' ? { name: node.to } : '#'"
           class="nav-main-link"
           :active-class="node.to && node.to !== '#' ? 'active' : ''"
         >
-          <i v-if="node.icon" :class="`nav-main-link-icon ${node.icon}`" />
-          <span v-if="node.name" class="nav-main-link-name">
+          <i
+            v-if="node.icon"
+            :class="`nav-main-link-icon ${node.icon}`"
+          />
+          <span
+            v-if="node.name"
+            class="nav-main-link-name"
+          >
             {{ node.name }}
           </span>
           <span
@@ -142,8 +151,7 @@ function linkClicked(e, submenu) {
                 ? `bg-${node['badge-variant']}`
                 : 'bg-primary'
             "
-            >{{ node.badge }}</span
-          >
+          >{{ node.badge }}</span>
         </RouterLink>
       </div>
       <!-- END Normal Link -->
@@ -155,16 +163,21 @@ function linkClicked(e, submenu) {
         class="nav-main-link nav-main-link-submenu"
         @click.prevent="linkClicked($event, true)"
       >
-        <i v-if="node.icon" :class="`nav-main-link-icon ${node.icon}`" />
-        <span v-if="node.name" class="nav-main-link-name">{{ node.name }}</span>
+        <i
+          v-if="node.icon"
+          :class="`nav-main-link-icon ${node.icon}`"
+        />
+        <span
+          v-if="node.name"
+          class="nav-main-link-name"
+        >{{ node.name }}</span>
         <span
           v-if="node.badge"
           class="nav-main-link-badge badge rounded-pill"
           :class="
             node['badge-variant'] ? `bg-${node['badge-variant']}` : 'bg-primary'
           "
-          >{{ node.badge }}</span
-        >
+        >{{ node.badge }}</span>
       </a>
       <!-- END Submenu Link -->
 

@@ -16,17 +16,20 @@ onMounted(() => {
 });
 </script>
 <template>
-    <BasePageHeading title="CICLOS ACADEMICOS" subtitle="Se muestran todos los ciclos academicos aperturados">
-      <template #extra>
-        <button
-          v-click-ripple
-          type="button"
-          class="btn btn-alt-primary"
-          @click="store.sideOverlay({ mode: 'toggle' })"
-        >
-          <i class="fa fa-plus opacity-50 me-1" />
-          Aperturar
-        </button>
-      </template>
-    </BasePageHeading>
+  <BasePageHeading
+    title="CICLOS ACADEMICOS"
+    subtitle="Se muestran todos los ciclos academicos aperturados"
+  >
+    <template #extra>
+      <button
+        v-click-ripple
+        type="button"
+        class="btn btn-alt-primary"
+        @click="store.sideOverlay({ mode: 'toggle' })"
+      >
+        <i class="fa fa-plus opacity-50 me-1" />
+        Aperturar
+      </button>
+    </template>
+  </BasePageHeading>
 </template>

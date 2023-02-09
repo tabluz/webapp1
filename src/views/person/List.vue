@@ -32,7 +32,9 @@ function showAlert(id) {
     <!-- Full Table -->
     <div class="block block-rounded">
       <div class="block-header block-header-default">
-        <h3 class="block-title">Lista de usuarios registrados</h3>
+        <h3 class="block-title">
+          Lista de usuarios registrados
+        </h3>
         <div class="block-options">
           <router-link
             :to="{ name: 'createPerson' }"
@@ -52,15 +54,29 @@ function showAlert(id) {
             <thead>
               <tr>
                 <th>NOMBRE</th>
-                <th style="width: 30%">APELLIDO</th>
-                <th style="width: 15%">DNI</th>
-                <th style="width: 15%">CORREO</th>
-                <th class="text-center" style="width: 100px">Actions</th>
+                <th style="width: 30%">
+                  APELLIDO
+                </th>
+                <th style="width: 15%">
+                  DNI
+                </th>
+                <th style="width: 15%">
+                  CORREO
+                </th>
+                <th
+                  class="text-center"
+                  style="width: 100px"
+                >
+                  Actions
+                </th>
               </tr>
             </thead>
 
             <tbody>
-              <template v-for="item in state.users" :key="item.id">
+              <template
+                v-for="item in state.users"
+                :key="item.id"
+              >
                 <tr>
                   <td class="text-center">
                     {{ item.name }}

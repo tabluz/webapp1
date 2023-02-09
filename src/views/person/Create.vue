@@ -102,7 +102,10 @@ const schema = object().shape({
                 </div>
                 <div class="col-md-6">
                   <div class="mb-4">
-                    <label class="form-label" for="lastname">Apellido </label>
+                    <label
+                      class="form-label"
+                      for="lastname"
+                    >Apellido </label>
                     <Field
                       id="last_name"
                       v-model="person.last_name"
@@ -132,7 +135,10 @@ const schema = object().shape({
                 </div>
                 <div class="col-md-6">
                   <div class="mb-4">
-                    <label class="form-label" for="lastname">DNI</label>
+                    <label
+                      class="form-label"
+                      for="lastname"
+                    >DNI</label>
                     <Field
                       id="fi-uname"
                       v-model="person.dni"
@@ -147,7 +153,10 @@ const schema = object().shape({
                 </div>
               </div>
               <div class="mb-4">
-                <label class="form-label" for="email">Correo</label>
+                <label
+                  class="form-label"
+                  for="email"
+                >Correo</label>
                 <Field
                   id="email"
                   v-model="person.email"
@@ -180,7 +189,10 @@ const schema = object().shape({
                 />
               </div>
               <div class="mb-4">
-                <label class="form-label" for="subject">Tipo de usuario</label>
+                <label
+                  class="form-label"
+                  for="subject"
+                >Tipo de usuario</label>
                 <Field
                   id="subject"
                   v-model="person.user_type"
@@ -189,10 +201,18 @@ const schema = object().shape({
                   name="user_type"
                   size="1"
                 >
-                  <option selected="">Seleccione un tipo de usuario</option>
-                  <option value="Alumno">Alumno</option>
-                  <option value="Profesor">Profesor</option>
-                  <option value="Administrador">Administrador</option>
+                  <option selected="">
+                    Seleccione un tipo de usuario
+                  </option>
+                  <option value="Alumno">
+                    Alumno
+                  </option>
+                  <option value="Profesor">
+                    Profesor
+                  </option>
+                  <option value="Administrador">
+                    Administrador
+                  </option>
                 </Field>
               </div>
               <div class="mb-4">
@@ -208,7 +228,10 @@ const schema = object().shape({
                 />
               </div>
               <div class="mb-4">
-                <button type="submit" class="btn btn-alt-primary">
+                <button
+                  type="submit"
+                  class="btn btn-alt-primary"
+                >
                   <i class="fa fa-paper-plane me-1 opacity-50" /> Enviar datos
                 </button>
               </div>

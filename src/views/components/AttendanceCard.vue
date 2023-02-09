@@ -171,8 +171,13 @@ onBeforeUnmount(() => {
             <div class="fill" />
           </div>
         </div>
-        <hr />
-        <button class="btn btn-success" @click="emit('check')">Presente</button>
+        <hr>
+        <button
+          class="btn btn-success"
+          @click="emit('check')"
+        >
+          Presente
+        </button>
       </template>
       <template v-else-if="state.resmsg === null">
         <div class="loader" />
