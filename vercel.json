@@ -1,14 +1,14 @@
 {
     "builds": [
       {
-        "src": "src/main.js",
+        "src": "src/App.vue",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "src/main.js"
+        "dest": "src/App.vue"
       }
     ]
   }
