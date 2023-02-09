@@ -25,5 +25,10 @@ export default {
       to: "payments",
       icon: "fa-solid fa-receipt",
     },
+    {
+      name: "Ciclos",
+      to: "cycles",
+      icon: "fa-brands fa-readme",
+    },
   ],
 };

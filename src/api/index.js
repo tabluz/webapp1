@@ -88,3 +88,9 @@ export const checkAttendance = (payload) => axios.post("/attendance", payload);
  * @since 1.0
  */
 export const fetchAttendance = (id) => axios.get(`/attendance/${id}`);
+
+/**
+ * @url GET /cycle
+ * @since 1.0
+ */
+export const fetchCycles = () => axios.get("/cycle");

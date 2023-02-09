@@ -23,6 +23,8 @@ const AttendanceView = () => import("@/views/Attendance.vue");
 const NotFound = () => import("@/views/error/NotFound.vue");
 const NotAllowed = () => import("@/views/error/NotAllowed.vue");
 
+const CycleListView = () => import("@/views/cycle/ListCycle.vue");
+
 // Backend: Dashboard
 const Dashboard = () => import("@/views/Home.vue");
 
@@ -72,6 +74,11 @@ const routes = [
         path: "attendance",
         name: "attendance",
         component: AttendanceView,
+      },
+      {
+        path: "cycle/list",
+        name: "cycle_list",
+        component: CycleListView,
       },
     ],
   },
