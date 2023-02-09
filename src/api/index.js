@@ -31,7 +31,7 @@ export const fetchUsers = () => axios.get("/person");
  * @since 1.0
  */
 
-export const fetchSection = () => axios.get("/salon");
+export const fetchSection = () => axios.get("/usercycle");
 
 
 
@@ -40,7 +40,7 @@ export const fetchSection = () => axios.get("/salon");
  * @since 1.0
  */
 
-export const fetchCycle = () => axios.get("/cycle");
+export const fetchCycles = () => axios.get("/cycle");
 
 
 

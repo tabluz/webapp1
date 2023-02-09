@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-
 import NProgress from "nprogress/nprogress.js";
 
 // Main layouts
@@ -16,6 +15,11 @@ const PersonListView = () => import("@/views/person/List.vue");
 
 const NotFound = () => import("@/views/error/NotFound.vue");
 const NotAllowed = () => import("@/views/error/NotAllowed.vue");
+
+const CycleListView = () => import("@/views/salon/Matricula.vue");
+const SectionListView = () => import("@/views/salon/Section.vue");
+
+
 
 // Backend: Dashboard
 const Dashboard = () => import("@/views/Home.vue");
@@ -41,6 +45,16 @@ const routes = [
         path: "profile",
         name: "profile",
         component: ProfileView,
+      },
+      {
+        path: "matricularse",
+        name: "salon_list",
+        component: CycleListView,
+      },
+      {
+        path: "sections",
+        name: "section_list",
+        component: SectionListView,
       },
     ],
   },
