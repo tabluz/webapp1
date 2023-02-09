@@ -6,7 +6,7 @@ export default {
       icon: "si si-home",
     },
     {
-      name: "Panel",
+      name: "Usuarios",
       to: "person_list",
       icon: "fas fa-light fa-gear",
     },

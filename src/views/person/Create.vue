@@ -36,7 +36,6 @@ onMounted(async () => {
     person.email = value.data.email;
     person.address = value.data.address;
     person.user_type = value.data.user_type;
-    person.password = value.data.password;
   }
 });
 
@@ -190,9 +189,9 @@ const schema = object().shape({
                   size="1"
                 >
                   <option selected="">Seleccione un tipo de usuario</option>
-                  <option value="Alumno">Alumno</option>
-                  <option value="Profesor">Profesor</option>
-                  <option value="Administrador">Administrador</option>
+                  <option value="student">Alumno</option>
+                  <option value="teacher">Profesor</option>
+                  <option value="admin">Administrador</option>
                 </Field>
               </div>
               <div class="mb-4">

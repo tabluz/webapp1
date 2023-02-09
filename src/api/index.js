@@ -88,3 +88,15 @@ export const checkAttendance = (payload) => axios.post("/attendance", payload);
  * @since 1.0
  */
 export const fetchAttendance = (id) => axios.get(`/attendance/${id}`);
+
+/**
+ * @url GET /attendance/:id
+ * @since 1.0
+ */
+export const paymentById = (id) => axios.get(`/payment/${id}`);
+
+/**
+ * @url GET /attendance/:id
+ * @since 1.0
+ */
+export const getCount = (user_type) => axios.get(`/count/${user_type}`);

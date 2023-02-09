@@ -1,6 +1,6 @@
 <script setup>
-import { reactive } from "vue";
-import { editPayment } from "../../api";
+import { reactive, onMounted } from "vue";
+import { editPayment, paymentById } from "../../api";
 import { Form } from "vee-validate";
 import FlatPickr from "vue-flatpickr-component";
 import { useRoute } from "vue-router";
@@ -23,6 +23,15 @@ async function onSubmit() {
   });
   state.res = data;
 }
+
+onMounted(async () => {
+  const payment_id = useRoute().params.id;
+
+  const value = await paymentById(payment_id);
+  state.paymenttype = value.data.payment_type;
+  state.descriptionpayment = value.data.description;
+  state.fechadepago = value.data.expiration_date;
+});
 </script>
 
 <template>
