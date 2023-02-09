@@ -2,11 +2,9 @@
     "version": 2,
     "builds": [
       {
-        "src": "src/main.js",
-        "use": "@vercel/vue",
-        "config": {
-          "vueVersion": "3.0.0"
-        }
+        "src": "index.html",
+        "use": "@vercel/static-build"
       }
     ]
   }
+  
