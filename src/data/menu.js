@@ -27,7 +27,7 @@ export default {
     },
     {
       name: "Ciclos",
-      to: "cycles",
+      to: "cycle_list",
       icon: "fa-brands fa-readme",
     },
   ],
