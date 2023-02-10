@@ -100,3 +100,20 @@ export const paymentById = (id) => axios.get(`/payment/${id}`);
  * @since 1.0
  */
 export const getCount = (user_type) => axios.get(`/count/${user_type}`);
+
+
+/**
+ * @url GET /usercycle
+ * @since 1.0
+ */
+
+export const fetchSection = () => axios.get("/usercycle");
+
+
+
+/**
+ * @url GET /cycle
+ * @since 1.0
+ */
+
+export const fetchCycles = () => axios.get("/cycle");

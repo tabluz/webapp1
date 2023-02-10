@@ -27,5 +27,16 @@ export default {
       icon: "fa-solid fa-receipt",
       roles: ["admin"],
     },
+    {
+      name: "Matricularse",
+      to: "salon_list",
+      icon: "fa-solid fa-graduation-cap",
+    },
+
+    {
+      name: "Seccion",
+      to: "section_list",
+      icon: "fa-solid fa-chalkboard-user",
+    },
   ],
 };

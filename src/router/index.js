@@ -19,6 +19,9 @@ const PaymentsListView = () => import("@/views/payments/PaymentsList.vue");
 const NewPaymentAll = () => import("@/views/payments/Newpayment.vue");
 const AttendanceView = () => import("@/views/Attendance.vue");
 
+const CycleListView = () => import("@/views/salon/Matricula.vue");
+const SectionListView = () => import("@/views/salon/Section.vue");
+
 const NotFound = () => import("@/views/error/NotFound.vue");
 const NotAllowed = () => import("@/views/error/NotAllowed.vue");
 
@@ -70,6 +73,16 @@ const routes = [
         path: "attendance",
         name: "attendance",
         component: AttendanceView,
+      },
+      {
+        path: "matricularse",
+        name: "salon_list",
+        component: CycleListView,
+      },
+      {
+        path: "sections",
+        name: "section_list",
+        component: SectionListView,
       },
     ],
   },
