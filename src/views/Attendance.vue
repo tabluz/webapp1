@@ -1,9 +1,10 @@
 <script setup>
-import { computed, reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import { useAuthStore } from "../stores/auth";
-import { checkAttendance } from "../api";
+import { checkAttendance, fetchAttendance } from "../api";
 import { useResponse } from "../composables/useResponse";
 import AttendanceCard from "./components/AttendanceCard.vue";
+import { isToday, dformat, dcalendar } from "../utils/day";
 
 const state = reactive({
   attendances: [],
@@ -19,15 +20,31 @@ const user_id = computed(() => {
   return id;
 });
 
-const check = async (state = "presente") => {
-  const isF = state === "falta";
-  const entry = isF ? null : new Date();
+async function fetchData() {
+  state.loading = true;
+  const value = await fetchAttendance(user_id.value);
+  if (value.data.length) {
+    const _current = value.data[0];
+    if (isToday(new Date(_current.created_at))) {
+      state.current = _current;
+    }
+    state.attendances = value.data;
+  }
+  state.loading = false;
+}
+
+onMounted(() => {
+  fetchData();
+});
+
+const check = async (st = "presente") => {
+  const entry = new Date();
   try {
     const value = await checkAttendance({
-      person_id: user_id,
+      id_person: user_id.value,
       entry_time: entry,
-      priority: state.order,
-      state,
+      priority: state.order.toString(),
+      state: st,
     });
 
     useResponse().showNotify(value);
@@ -39,6 +56,14 @@ const check = async (state = "presente") => {
     useResponse().showNotify(error);
   }
 };
+
+function toDate(date) {
+  return dcalendar(date);
+}
+
+function toTime(date) {
+  return dformat(date, "HH:mm:ss A");
+}
 </script>
 
 <template>
@@ -49,7 +74,10 @@ const check = async (state = "presente") => {
   <div class="content">
     <div class="row">
       <div class="col-md-4">
-        <AttendanceCard :current="state.current" @check="check" />
+        <AttendanceCard
+          :current="state.current"
+          @check="check"
+        />
       </div>
       <div class="col-md-8">
         <BaseBlock title="Reporte">
@@ -61,7 +89,7 @@ const check = async (state = "presente") => {
                 class="form-control form-control-alt"
                 name="one-ecom-products-search"
                 placeholder="Buscar por usuario o servicio"
-              />
+              >
               <span class="input-group-text bg-body border-0">
                 <i class="fa fa-search" />
               </span>
@@ -71,26 +99,46 @@ const check = async (state = "presente") => {
             <table class="table table-borderless table-striped table-vcenter">
               <thead>
                 <tr>
-                  <th class="text-center" style="width: 100px">Dia</th>
-                  <th class="d-none d-md-table-cell">Estado</th>
-                  <th class="d-none d-sm-table-cell text-center">
+                  <th class="text-center">
+                    Id
+                  </th>
+                  <th class="text-center">
+                    ¿Cuando?
+                  </th>
+                  <th class="d-none d-md-table-cell">
                     Hora de ingreso
+                  </th>
+                  <th class="d-none d-md-table-cell">
+                    Estado
+                  </th>
+                  <th class="d-none d-sm-table-cell text-center">
+                    Justificar
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <template v-for="item in state.attendances" :key="item.id">
+                <template
+                  v-for="item in state.attendances"
+                  :key="item.id"
+                >
                   <tr>
                     <td>
                       <b>
                         {{ item.id }}
                       </b>
                     </td>
-                    <td class="text-end d-none d-sm-table-cell fs-sm">
-                      <strong>{{ item.entry_time }}</strong>
+                    <td>
+                      <b>
+                        {{ toDate(item.created_at) }}
+                      </b>
                     </td>
                     <td>
-                      <span class="badge bg-warning">Pendiente</span>
+                      <strong>{{ toTime(item.entry_time) }}</strong>
+                    </td>
+                    <td>
+                      <span class="badge bg-info">
+                        {{ item.state }}
+                      </span>
                     </td>
                     <td class="text-center fs-sm">
                       <a

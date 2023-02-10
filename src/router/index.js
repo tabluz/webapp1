@@ -17,7 +17,6 @@ const PersonCreateView = () => import("@/views/person/Create.vue");
 
 const PaymentsListView = () => import("@/views/payments/PaymentsList.vue");
 const NewPaymentAll = () => import("@/views/payments/Newpayment.vue");
-const EditPayment = () => import("@/views/payments/EditPayment.vue");
 const AttendanceView = () => import("@/views/Attendance.vue");
 
 const NotFound = () => import("@/views/error/NotFound.vue");
@@ -42,11 +41,13 @@ const routes = [
         path: "person/list",
         name: "person_list",
         component: PersonListView,
+        meta: { roles: ["admin"] },
       },
       {
         path: "person/:id?",
         name: "createPerson",
         component: PersonCreateView,
+        meta: { roles: ["admin"] },
       },
       {
         path: "profile",
@@ -54,19 +55,16 @@ const routes = [
         component: ProfileView,
       },
       {
-        path: "payments/:id?",
+        path: "payments",
         name: "payments",
         component: PaymentsListView,
+        meta: { roles: ["admin"] },
       },
       {
-        path: "payments/:id",
-        name: "editpayments",
-        component: EditPayment,
-      },
-      {
-        path: "newpayment",
+        path: "newpayment/:id?",
         name: "newpayment",
         component: NewPaymentAll,
+        meta: { roles: ["admin"] },
       },
       {
         path: "attendance",
@@ -140,11 +138,16 @@ router.beforeEach((to, from) => {
   const publicPages = ["login", "recover", "changepassword"];
   const authRequired = !publicPages.includes(to.name);
   const auth = useAuthStore();
-
   if (authRequired) {
     if (!auth.token) {
       auth.returnUrl = to.fullPath;
       return { name: "login" };
+    }
+    if (to.meta.roles) {
+      const utype = auth.user.user_type;
+      if (!to.meta.roles.includes(utype)) {
+        return { name: "notallowed" };
+      }
     }
   } else {
     if (!authRequired) {

@@ -15,7 +15,6 @@ async function fetchData() {
 }
 onMounted(() => {
   fetchData();
-  console.log(state.users);
 });
 function showAlert(id) {
   const response = useResponse();
@@ -27,12 +26,19 @@ function showAlert(id) {
 }
 </script>
 <template>
+  <BasePageHeading
+    title="Lista de usuarios"
+    subtitle="A continuación se mostrarán todos los usuarios registrados en la
+          plataforma hasta el día de hoy."
+  />
   <!-- List table -->
   <div class="content">
     <!-- Full Table -->
     <div class="block block-rounded">
       <div class="block-header block-header-default">
-        <h3 class="block-title">Lista de usuarios registrados</h3>
+        <h3 class="block-title">
+          Lista de usuarios registrados
+        </h3>
         <div class="block-options">
           <router-link
             :to="{ name: 'createPerson' }"
@@ -52,32 +58,39 @@ function showAlert(id) {
             <thead>
               <tr>
                 <th>NOMBRE</th>
-                <th style="width: 30%">APELLIDO</th>
-                <th style="width: 15%">DNI</th>
-                <th style="width: 15%">CORREO</th>
-                <th class="text-center" style="width: 100px">Actions</th>
+                <th>APELLIDO</th>
+                <th>DNI</th>
+                <th>CORREO</th>
+                <th
+                  class="text-center"
+                  style="width: 100px"
+                >
+                  Actions
+                </th>
               </tr>
             </thead>
-
             <tbody>
-              <template v-for="item in state.users" :key="item.id">
+              <template
+                v-for="item in state.users"
+                :key="item.id"
+              >
                 <tr>
-                  <td class="text-center">
+                  <td>
                     {{ item.name }}
                   </td>
-                  <td class="text-center">
+                  <td>
                     {{ item.last_name }}
                   </td>
-                  <td class="text-center">
+                  <td>
                     {{ item.dni }}
                   </td>
-                  <td class="text-center">
+                  <td>
                     {{ item.email }}
                   </td>
-                  <td class="text-center">
+                  <td>
                     <div class="btn-group">
                       <router-link
-                        class="btn btn-sm btn-alt-secondary"
+                        class="btn btn-sm btn-alt-success"
                         data-bs-toggle="tooltip"
                         title="Editar"
                         :to="{ name: 'createPerson', params: { id: item.id } }"
@@ -86,7 +99,7 @@ function showAlert(id) {
                       </router-link>
                       <button
                         type="button"
-                        class="btn btn-sm btn-alt-secondary"
+                        class="btn btn-sm btn-alt-danger"
                         @click="showAlert(item.id)"
                       >
                         <i class="fa fa-fw fa-times" />

@@ -9,6 +9,7 @@ export default {
       name: "Usuarios",
       to: "person_list",
       icon: "fas fa-light fa-gear",
+      roles: ["admin"],
     },
     {
       name: "Mi perfil",
@@ -24,6 +25,7 @@ export default {
       name: "Pagos",
       to: "payments",
       icon: "fa-solid fa-receipt",
+      roles: ["admin"],
     },
   ],
 };

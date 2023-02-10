@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useTemplateStore } from "@/stores/template";
-
+import { useAuthStore } from "@/stores/auth";
 import BaseNavigation from "@/components/BaseNavigation.vue";
 
 import SimpleBar from "simplebar";
@@ -9,8 +9,7 @@ import SimpleBar from "simplebar";
 // Grab menu navigation arrays
 import menu from "@/data/menu";
 
-const navigation = menu.main;
-
+const navigation = ref([]);
 // Component properties
 defineProps({
   withMiniNav: {
@@ -72,6 +71,13 @@ watch(
 // Init SimpleBar (custom scrolling)
 onMounted(() => {
   new SimpleBar(document.getElementById("simplebar-sidebar"));
+
+  const { user_type } = useAuthStore().user;
+  navigation.value = menu.main.filter((item) => {
+    if (!item.roles || item.roles.includes(user_type)) {
+      return item;
+    }
+  });
 });
 </script>
 
@@ -86,13 +92,19 @@ onMounted(() => {
       <div class="content-header">
         <slot name="header">
           <!-- Logo -->
-          <RouterLink :to="{ name: 'home' }" class="fw-semibold text-dual">
-            <span class="smini-visible">
-              <i class="fa fa-circle-notch text-primary" />
+          <RouterLink
+            :to="{ name: 'home' }"
+            class="fw-semibold text-dual d-flex align-items-center"
+          >
+            <span style="margin-right: 0.5rem">
+              <img
+                src="/assets/media/images/logo.png"
+                width="30"
+                alt=""
+              >
             </span>
             <span class="smini-hide fs-5 tracking-wider">
               {{ store.app.name }}
-              <span class="fw-normal">{{ store.app.version }}</span>
             </span>
           </RouterLink>
           <!-- END Logo -->
@@ -112,8 +124,14 @@ onMounted(() => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <i v-if="!store.settings.darkMode" class="far fa-moon" />
-                <i v-if="store.settings.darkMode" class="fa fa-moon" />
+                <i
+                  v-if="!store.settings.darkMode"
+                  class="far fa-moon"
+                />
+                <i
+                  v-if="store.settings.darkMode"
+                  class="fa fa-moon"
+                />
               </button>
               <div
                 class="dropdown-menu dropdown-menu-end dropdown-menu fs-sm smini-hide border-0"
@@ -129,12 +147,11 @@ onMounted(() => {
                       type="radio"
                       value="light"
                       @change="onDarkModeRadioChange"
-                    />
+                    >
                     <label
                       class="form-check-label fw-medium"
                       for="radio-dark-mode-off"
-                      >Dia</label
-                    >
+                    >Dia</label>
                   </div>
                   <div class="form-check">
                     <input
@@ -144,11 +161,11 @@ onMounted(() => {
                       type="radio"
                       value="dark"
                       @change="onDarkModeRadioChange"
-                    />
+                    >
                     <label
                       class="form-check-label fw-medium"
                       for="radio-dark-mode-on"
-                      >Noche
+                    >Noche
                     </label>
                   </div>
                   <div class="form-check mb-0">
@@ -159,7 +176,7 @@ onMounted(() => {
                       type="radio"
                       value="system"
                       @change="onDarkModeRadioChange"
-                    />
+                    >
                     <label
                       class="form-check-label fw-medium"
                       for="radio-dark-mode-system"
@@ -299,7 +316,10 @@ onMounted(() => {
       <!-- END Side Header -->
 
       <!-- Sidebar Scrolling -->
-      <div id="simplebar-sidebar" class="js-sidebar-scroll">
+      <div
+        id="simplebar-sidebar"
+        class="js-sidebar-scroll"
+      >
         <slot name="content">
           <!-- Side Navigation -->
           <div class="content-side">

@@ -8,28 +8,33 @@ const state = reactive({
   teacher_count: "",
 });
 
-onMounted(async () => {
-  const student = await getCount("student");
-  const admin = await getCount("admin");
-  const teacher = await getCount("teacher");
-  state.student_count = student.data;
-  state.admin_count = admin.data;
-  state.teacher_count = teacher.data;
+onMounted(() => {
+  Promise.all([
+    getCount("student"),
+    getCount("admin"),
+    getCount("teacher"),
+  ]).then(([student, admin, teacher]) => {
+    state.student_count = student.data;
+    state.admin_count = admin.data;
+    state.teacher_count = teacher.data;
+  });
 });
 </script>
 
 <template>
-  <BasePageHeading title="Aula Virtual" subtitle="Bienvenido querido usuario! ">
+  <BasePageHeading
+    title="Aula Virtual"
+    subtitle="Bienvenido querido usuario! "
+  >
     <template #extra>
-      <button
+      <router-link
         v-click-ripple
-        type="button"
+        :to="{ name: 'profile' }"
         class="btn btn-alt-primary"
-        @click="store.sideOverlay({ mode: 'toggle' })"
       >
-        <i class="fa fa-plus opacity-50 me-1" />
+        <i class="fa fa-user opacity-50 me-1" />
         MI perfil
-      </button>
+      </router-link>
     </template>
   </BasePageHeading>
 
@@ -43,16 +48,18 @@ onMounted(async () => {
             class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center"
           >
             <dl class="mb-0">
-              <dt class="fs-3 fw-bold">{{ state.student_count }}</dt>
+              <dt class="fs-3 fw-bold">
+                {{ state.student_count }}
+              </dt>
               <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">
                 Alumnos Registrados
               </dd>
             </dl>
             <div class="item item-rounded-lg bg-body-light">
-              <i class="far fa-gem fs-3 text-primary"></i>
+              <i class="far fa-gem fs-3 text-primary" />
             </div>
           </div>
-          <div class="bg-body-light rounded-bottom"></div>
+          <div class="bg-body-light rounded-bottom" />
         </div>
         <!-- END Pending Orders -->
       </div>
@@ -63,16 +70,18 @@ onMounted(async () => {
             class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center"
           >
             <dl class="mb-0">
-              <dt class="fs-3 fw-bold">{{ state.teacher_count }}</dt>
+              <dt class="fs-3 fw-bold">
+                {{ state.teacher_count }}
+              </dt>
               <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">
                 Profesores Registrados
               </dd>
             </dl>
             <div class="item item-rounded-lg bg-body-light">
-              <i class="far fa-user-circle fs-3 text-primary"></i>
+              <i class="far fa-user-circle fs-3 text-primary" />
             </div>
           </div>
-          <div class="bg-body-light rounded-bottom"></div>
+          <div class="bg-body-light rounded-bottom" />
         </div>
         <!-- END New Customers -->
       </div>
@@ -83,16 +92,18 @@ onMounted(async () => {
             class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center"
           >
             <dl class="mb-0">
-              <dt class="fs-3 fw-bold">{{ state.admin_count }}</dt>
+              <dt class="fs-3 fw-bold">
+                {{ state.admin_count }}
+              </dt>
               <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">
                 Administradores
               </dd>
             </dl>
             <div class="item item-rounded-lg bg-body-light">
-              <i class="far fa-paper-plane fs-3 text-primary"></i>
+              <i class="far fa-paper-plane fs-3 text-primary" />
             </div>
           </div>
-          <div class="bg-body-light rounded-bottom"></div>
+          <div class="bg-body-light rounded-bottom" />
         </div>
         <!-- END Messages -->
       </div>

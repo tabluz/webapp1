@@ -16,7 +16,7 @@ const state = reactive({
   configData: {
     order: 1,
     st_att_left: "12345",
-    entry_time: "07:45",
+    entry_time: "19:23",
     tolerance: 15,
   },
   t: null,
@@ -58,7 +58,7 @@ const { current } = toRefs(props);
 
 const emit = defineEmits(["check"]);
 
-const readyy = computed(() => state.persent > 0 && current.value === null);
+const readyy = computed(() => state.persent > 0 && !current.value);
 
 function loadData() {
   const { entry_time: entry, tolerance } = state.configData;
@@ -66,7 +66,7 @@ function loadData() {
   const progress = diffToNow(from, "s");
   if (isAfterFromNow(from)) {
     const progressOnMin = progress / 60;
-    if (current.value === null && progressOnMin < tolerance) {
+    if (!current.value && progressOnMin < tolerance) {
       const res = tolerance - progressOnMin;
       setMsg({
         icon: "schedule",
@@ -78,7 +78,7 @@ function loadData() {
     } else {
       clearInterval(state.t);
       state.persent = 0;
-      if (current.value !== null) {
+      if (current.value) {
         const { entry_time } = current.value;
         if (entry_time === null) {
           setMsg({
@@ -148,11 +148,11 @@ onBeforeUnmount(() => {
   <div class="">
     <BaseBlock title="Asistencia diaria">
       <div class="fw-medium">
-        <span class="text-warning">Hora de ingreso:</span>
+        <span class="text-warning">Hora de ingreso: </span>
         <span> {{ state.configData.entry_time }} </span>
       </div>
       <div class="fw-medium">
-        <span class="text-warning">Tolerancia</span>
+        <span class="text-warning">Tolerancia </span>
         <span> {{ state.configData.tolerance }} minutos</span>
       </div>
       <div class="p-2 bg-light fw-medium rounded mt-4">
@@ -160,9 +160,9 @@ onBeforeUnmount(() => {
         Hoy {{ state.currentText }} la asistencia está habilitado
       </div>
     </BaseBlock>
-    <BaseBlock class="d-flex flex-column text-center align-items-center mt-4">
+    <BaseBlock class="text-center align-items-center mt-4">
       <template v-if="readyy">
-        <div :class="`c100 p${persent} green`">
+        <div :class="`c100 p${state.persent} green`">
           <span :class="`text-${state.resmsg.color}`">
             {{ `${state.resmsg.mainmsg} ${state.resmsg.message}` }}
           </span>
@@ -171,8 +171,13 @@ onBeforeUnmount(() => {
             <div class="fill" />
           </div>
         </div>
-        <hr />
-        <button class="btn btn-success" @click="emit('check')">Presente</button>
+        <hr>
+        <button
+          class="btn btn-success"
+          @click="emit('check')"
+        >
+          Presente
+        </button>
       </template>
       <template v-else-if="state.resmsg === null">
         <div class="loader" />
@@ -191,3 +196,227 @@ onBeforeUnmount(() => {
     </BaseBlock>
   </div>
 </template>
+<style lang="scss">
+$circle-width: 0.08em;
+$circle-width-hover: 0.04em;
+$primary: #0059df;
+$light: #f2f4f8;
+$warning: #ea580c;
+// mixins
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin rotate($rotation) {
+  -webkit-transform: rotate($rotation);
+  -moz-transform: rotate($rotation);
+  -ms-transform: rotate($rotation);
+  -o-transform: rotate($rotation);
+  transform: rotate($rotation);
+}
+
+@mixin box-sizing($box-sizing) {
+  -webkit-box-sizing: $box-sizing;
+  -moz-box-sizing: $box-sizing;
+  box-sizing: $box-sizing;
+}
+
+@mixin transition-property($transition) {
+  -webkit-transition-property: $transition;
+  -moz-transition-property: $transition;
+  -o-transition-property: $transition;
+  transition-property: $transition;
+}
+
+@mixin transition-duration($duration) {
+  -webkit-transition-duration: $duration;
+  -moz-transition-duration: $duration;
+  -o-transition-duration: $duration;
+  transition-duration: $duration;
+}
+
+@mixin transition-timing-function($timing) {
+  -webkit-transition-timing-function: $timing;
+  -moz-transition-timing-function: $timing;
+  -o-transition-timing-function: $timing;
+  transition-timing-function: $timing;
+}
+
+//yup
+.rect-auto {
+  clip: rect(auto, auto, auto, auto);
+}
+
+.pie {
+  position: absolute;
+  border: $circle-width solid rgba(var($primary), 1);
+  width: 1 - (2 * $circle-width);
+  height: 1 - (2 * $circle-width);
+  clip: rect(0em, 0.5em, 1em, 0em);
+  border-radius: 50%;
+  @include rotate(0deg);
+}
+
+.pie-fill {
+  @include rotate(180deg);
+}
+
+// main
+.c100 {
+  *,
+  *:before,
+  *:after {
+    @include box-sizing(content-box);
+  }
+
+  position: relative;
+  font-size: 120px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  float: left;
+  margin: 0 0.1em 0.1em 0;
+  background-color: rgba(var($light), 1);
+
+  // center circle to its parent
+  &.center {
+    float: none;
+    margin: 0 auto;
+  }
+
+  // bigger size
+  &.big {
+    font-size: 240px;
+  }
+
+  // smaller size
+  &.small {
+    font-size: 80px;
+  }
+
+  // centered value inside circle
+  > span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+    top: 35%;
+    line-height: 1.2em;
+    font-size: 0.12em;
+    display: block;
+    text-align: center;
+    @include transition-property(all);
+    @include transition-duration(0.2s);
+    @include transition-timing-function(ease-out);
+  }
+
+  // background inside the circle
+  &:after {
+    position: absolute;
+    top: $circle-width;
+    left: $circle-width;
+    display: block;
+    content: " ";
+    border-radius: 50%;
+    background-color: rgba(var($warning), 0.1);
+    width: 1 - (2 * $circle-width);
+    height: 1 - (2 * $circle-width);
+    @include transition-property(all);
+    @include transition-duration(0.2s);
+    @include transition-timing-function(ease-in);
+  }
+
+  // the slice (mask)
+  .slice {
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    clip: rect(0em, 1em, 1em, 0.5em);
+  }
+
+  // circle to show the status
+  .bar {
+    @extend .pie;
+  }
+
+  // loop to create all needed elements automatically
+  @for $i from 51 through 100 {
+    &.p#{$i} {
+      & .slice {
+        @extend .rect-auto;
+      }
+
+      &.bar:after {
+        @extend .pie-fill;
+      }
+
+      & .fill {
+        @extend .pie;
+        @extend .pie-fill;
+      }
+    }
+  }
+
+  // loop to rotate all 100 circles
+  @for $i from 1 through 100 {
+    &.p#{$i} .bar {
+      $degs: calc(360 / 100 * $i);
+      @include rotate(#{$degs}deg);
+    }
+  }
+
+  // hover styles
+  &:hover {
+    cursor: default;
+
+    > span {
+      font-weight: bold;
+      color: rgba(var($primary), 1);
+    }
+
+    &:after {
+      top: $circle-width-hover;
+      left: $circle-width-hover;
+      width: 1 - (2 * $circle-width-hover);
+      height: 1 - (2 * $circle-width-hover);
+    }
+  }
+
+  &.grantext {
+    > span {
+      font-size: 0.22em;
+    }
+  }
+
+  &.green {
+    .bar,
+    .fill {
+      border-color: rgba(var(--vs-success), 1) !important;
+    }
+
+    &:hover {
+      > span {
+        color: rgba(var($warning), 1);
+      }
+    }
+  }
+
+  &.orange {
+    .bar,
+    .fill {
+      border-color: rgba(var($warning), 1) !important;
+    }
+
+    &:hover {
+      > span {
+        color: rgba(var($primary), 1);
+      }
+    }
+  }
+}
+</style>

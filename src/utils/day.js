@@ -60,4 +60,13 @@ export function relative(date) {
   return extday(date).startOf("minutes").fromNow();
 }
 
+export const isToday = (someDate) => {
+  const today = new Date();
+  return (
+    someDate.getDate() === today.getDate() &&
+    someDate.getMonth() === today.getMonth() &&
+    someDate.getFullYear() === today.getFullYear()
+  );
+};
+
 export default day;

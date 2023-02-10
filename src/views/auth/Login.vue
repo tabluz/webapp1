@@ -34,7 +34,10 @@ const schema = object().shape({
           @submit="store.login"
         >
           <div class="mb-4">
-            <label class="form-label" for="fi-uname">DNI</label>
+            <label
+              class="form-label"
+              for="fi-uname"
+            >DNI</label>
             <Field
               id="fi-uname"
               v-model="state.dni"
@@ -45,12 +48,18 @@ const schema = object().shape({
               placeholder="Por ejem. 15481548"
             />
 
-            <div v-show="errors.dni" class="invalid-feedback animated fadeIn">
+            <div
+              v-show="errors.dni"
+              class="invalid-feedback animated fadeIn"
+            >
               {{ errors.dni }}
             </div>
           </div>
           <div class="mb-4">
-            <label class="form-label" for="fi-uname">Contraseña</label>
+            <label
+              class="form-label"
+              for="fi-uname"
+            > Contraseña </label>
             <Field
               id="fi-uname"
               v-model="state.password"
@@ -85,7 +94,10 @@ const schema = object().shape({
               </RouterLink>
             </div>
             <div>
-              <button type="submit" class="btn btn-lg btn-alt-primary">
+              <button
+                type="submit"
+                class="btn btn-lg btn-alt-primary"
+              >
                 <i class="fa fa-fw fa-sign-in-alt me-1 opacity-50" />
                 Login
               </button>

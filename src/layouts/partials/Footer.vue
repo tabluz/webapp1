@@ -20,7 +20,10 @@ const store = useTemplateStore();
             </div>
             <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-start">
               <slot name="content-left">
-                <a class="fw-semibold" href="#">
+                <a
+                  class="fw-semibold"
+                  href="#"
+                >
                   {{ store.app.name + " " + store.app.version }}
                 </a>
                 &copy; {{ store.app.copyright }}

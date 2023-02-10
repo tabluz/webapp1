@@ -1,8 +1,12 @@
 <script setup>
-import { reactive } from "vue";
-import { createPayment } from "../../api";
+import { reactive, onMounted } from "vue";
+import { createPayment, editPayment, paymentById } from "../../api";
 import { Form } from "vee-validate";
 import FlatPickr from "vue-flatpickr-component";
+import { useRoute, useRouter } from "vue-router";
+
+const route = useRoute();
+const router = useRouter();
 
 const state = reactive({
   paymenttype: "",
@@ -12,19 +16,44 @@ const state = reactive({
 });
 
 async function onSubmit() {
-  const data = await createPayment({
+  const save = (id, payload) => {
+    if (!id) {
+      return createPayment(payload);
+    }
+    return editPayment(id, payload);
+  };
+
+  const data = await save(route.params.id, {
     payment_type: state.paymenttype,
     description: state.descriptionpayment,
     expiration_date: state.fechadepago,
   });
+
   state.res = data;
+  setTimeout(() => {
+    router.push({ name: "payments" });
+  }, 1000);
 }
+
+onMounted(async () => {
+  if (route.params.id) {
+    const value = await paymentById(route.params.id);
+    state.paymenttype = value.data.payment_type;
+    state.descriptionpayment = value.data.description;
+    state.fechadepago = value.data.expiration_date;
+  }
+});
 </script>
 
 <template>
   <!-- Hero Content -->
-  <div class="text-center pt-">
-    <h2 class="h2 text-white mb-0">Crear pago</h2>
+  <div class="bg-primary-dark">
+    <div class="content content-full text-center pt-7 pb-5">
+      <h1 class="h2 text-white mb-2">
+        {{ !route.params.id ? "Crear" : "Modificar" }} pago
+      </h1>
+      <h2 class="h4 fw-normal text-white-75" />
+    </div>
   </div>
   <!-- END Hero Content -->
 
@@ -43,13 +72,31 @@ async function onSubmit() {
               </div>
             </div>
             <div class="mb-5">
-              <select v-model="state.paymenttype" class="form-select">
-                <option value="" disabled>Tipo de pago</option>
-                <option value="Inscripción">Inscripción</option>
-                <option value="Matrícula">Matrícula</option>
-                <option value="Mensualidad">Mensualidad</option>
-                <option value="Saldo pendiente">Saldo pendiente</option>
-                <option value="Libros">Libros</option>
+              <select
+                v-model="state.paymenttype"
+                class="form-select"
+              >
+                <option
+                  value=""
+                  disabled
+                >
+                  Tipo de pago
+                </option>
+                <option value="Inscripción">
+                  Inscripción
+                </option>
+                <option value="Matrícula">
+                  Matrícula
+                </option>
+                <option value="Mensualidad">
+                  Mensualidad
+                </option>
+                <option value="Saldo pendiente">
+                  Saldo pendiente
+                </option>
+                <option value="Libros">
+                  Libros
+                </option>
               </select>
             </div>
 
@@ -88,7 +135,11 @@ async function onSubmit() {
             <div class="mb-4" />
 
             <div class="center">
-              <button id="buttom" type="submit" class="btn btn-alt-primary">
+              <button
+                id="buttom"
+                type="submit"
+                class="btn btn-alt-primary"
+              >
                 Guardar
               </button>
             </div>

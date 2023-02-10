@@ -29,6 +29,10 @@ function showAlert(id) {
 </script>
 
 <template>
+  <BasePageHeading
+    title="Lista de pagos"
+    subtitle="A continuación se muestran los pagos creados:"
+  />
   <div class="content">
     <BaseBlock title="PAGOS">
       <template #options>
@@ -48,15 +52,20 @@ function showAlert(id) {
         <table class="table table-bordered table-striped table-vcenter">
           <thead>
             <tr>
-              <th style="width: 0%">ID</th>
-              <th style="width: 4%">Tipo de pago</th>
-              <th style="width: 25%">Descripción</th>
-              <th style="width: 5%">Fecha de pago</th>
-              <th class="text-center" style="width: 0%">Acciones</th>
+              <th>ID</th>
+              <th>Tipo de pago</th>
+              <th>Descripción</th>
+              <th>Fecha de pago</th>
+              <th class="text-center">
+                Acciones
+              </th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="payment in state.payments" :key="payment.id">
+            <tr
+              v-for="payment in state.payments"
+              :key="payment.id"
+            >
               <td class="fw-semibold fs-sm">
                 {{ payment.id }}
               </td>
@@ -64,7 +73,10 @@ function showAlert(id) {
               <td class="fw-semibold fs-sm">
                 {{ payment.payment_type }}
               </td>
-              <td style="font-size: 80%" class="text-muted">
+              <td
+                style="font-size: 80%"
+                class="text-muted"
+              >
                 <i>{{ payment.description }}</i>
               </td>
               <td>
@@ -79,9 +91,12 @@ function showAlert(id) {
               <td class="text-center">
                 <div class="btn-group">
                   <RouterLink
-                    :to="{ name: 'editpayments', params: { id: payment.id } }"
+                    :to="{ name: 'newpayment', params: { id: payment.id } }"
                   >
-                    <button type="button" class="btn btn-sm btn-alt-secondary">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-alt-secondary"
+                    >
                       <i class="fa fa-fw fa-pencil-alt" />
                     </button>
                   </RouterLink>

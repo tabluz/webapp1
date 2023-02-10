@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useResponse } from "../composables/useResponse";
 import { useAuthStore } from "../stores/auth";
 
 const api_url = import.meta.env.VITE_API_URL;
@@ -35,15 +36,10 @@ instance.interceptors.response.use(
       data: null,
     };
 
-    const { response: res } = error;
-    if (res) {
-      errData = res.data;
-      if (
-        errData.status_code === 401 &&
-        errData.details.code === "token_not_valid"
-      ) {
-        const { logout } = useAuthStore();
-        logout();
+    if (error.response) {
+      errData = error.response.data;
+      if ([401, 403].indexOf(error.response.status) !== -1) {
+        useResponse().showAlert(errData);
       }
     }
     return Promise.reject(errData);
