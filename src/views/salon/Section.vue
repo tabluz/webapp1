@@ -2,6 +2,26 @@
 import { reactive, onMounted } from "vue";
 import { fetchUsers, fetchSection , fetchCycles} from '../../api';
 
+
+const stateCycle = reactive({
+    cycles: [],
+    res: {}
+})
+
+async function fetchCycle() {
+  stateCycle.loading = true;
+  const value1 = await fetchCycles();
+  stateCycle.cycles = value1.data;
+  stateCycle.loading = false;
+}
+
+
+onMounted(() => {
+  fetchCycle();
+});
+
+
+
 const state = reactive({
   users: [],
   loading: false,
@@ -11,12 +31,12 @@ async function fetchData() {
   state.loading = true;
   const response = await fetchUsers();
   state.users = response.data;
-  state.loading = false
+  state.loading = false;
 }
-
 onMounted(() => {
   fetchData();
 })
+
 
 
 
@@ -24,72 +44,36 @@ const stateSection = reactive({
   sections: [],
   loading: false,
 });
-
 async function fetchDataSections() {
   stateSection.loading = true;
   const response = await fetchSection();
   stateSection.sections = response.data;
-  stateSection.loading = false
+  stateSection.loading = false;
 }
-
 onMounted(() => {
   fetchDataSections();
 })
 
 
-
-const stateCycle = reactive({
-  cycles: [],
-  loading: false,
-});
-
-async function fetchDataCycles() {
-  stateCycle.loading = true;
-  const value = await fetchCycles();
-  stateCycle.cycles = value.data;
-  stateCycle.loading = false
-}
-
-onMounted(() => {
-  fetchDataCycles();
-})
-
-
-
-
-
-
 </script>
 
-<template >
 
-<body>
-<div class="container mt-5 ">
-      
-      <div class="row mt-1 shadow-lg rounded-4 bg-light">
-        
-        <div class="d-flex justify-content-between">
-          <strong><h2 class="d-inline">Matriculas por ciclo y sección</h2></strong>
-          <button type="submit" class="btn btn-lg btn-alt-primary"> Matricular </button>
-        </div>
-        <p class="ml-3">Registre una nueva matricula</p>
-      </div>
-
-</div>
-
+<template>
+<BasePageHeading 
+title="Matriculas por ciclo y sección"
+subtitle="Registre una nueva matricula"
+/>
 
 
 
   <div class="d-flex">
     <div class="form-group my-2" style="flex-basis: 50%">
-        <h4>Ciclo</h4>
+  <h4>Ciclo</h4>
+  <select class="form-select">
+    <option v-for="cycle in stateCycle.cycles" > {{ cycle.name }} </option>
+  </select>
+</div>
 
-        
-        <select class="form-control" id="ciclo">
-          <option v-for="item in state.cycles">{{ user.name }}</option>
-        </select>
-        
-    </div>
 
 
   <div class="form-group my-2" style="flex-basis: 50%">
@@ -107,11 +91,11 @@ onMounted(() => {
 
 
 <div class="users-container content">
- <div class="user-block" v-for="user in state.users"> 
 
 
-<table class="table mx-auto" style="width: 50%; margin: auto;">
-  <thead class="thead-light">
+  <div class="table-responsive">
+  <table class="table table-bordered table-striped table-vcenter">
+  <thead>
 
       <th>Id </th>
       <th>Nombre </th>
@@ -120,11 +104,11 @@ onMounted(() => {
   </thead>
   <tbody>
 
-    <tr>
+    <tr v-for="user in state.users" :key="user.id">
 
-       <td>{{  user.id  }}</td>
-      <td>{{  user.name  }}</td>
-      <td>{{  user.last_name  }}</td> 
+       <td class="fw-semibold fs-sm">{{  user.id  }}</td>
+      <td class="fw-semibold fs-sm">{{  user.name  }}</td>
+      <td class="fw-semibold fs-sm" >{{  user.last_name  }}</td> 
     </tr>
     
   </tbody>
@@ -133,6 +117,6 @@ onMounted(() => {
 </div>
 </div>
 
-</body>
+
 
 </template>
