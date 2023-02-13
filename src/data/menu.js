@@ -27,5 +27,11 @@ export default {
       icon: "fa-solid fa-receipt",
       roles: ["admin"],
     },
+    {
+      name: "Ciclos",
+      to: "cycle_list",
+      icon: "fa-brands fa-readme",
+      roles: ["admin"],
+    },
   ],
 };

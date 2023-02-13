@@ -100,3 +100,33 @@ export const paymentById = (id) => axios.get(`/payment/${id}`);
  * @since 1.0
  */
 export const getCount = (user_type) => axios.get(`/count/${user_type}`);
+
+/**
+ * @url GET /cycle
+ * @since 1.0
+ */
+export const fetchCycles = () => axios.get("/cycle");
+
+/**
+ * @url POST /cycle
+ * @since 1.0
+ */
+export const createCycle = (payload) => axios.post("/cycle", payload);
+
+/**
+ * @url GET /cycle/:id
+ * @since 1.0
+ */
+export const cycleById = (id) => axios.get(`/cycle/${id}`);
+
+/**
+ * @url PUT /cycle:id
+ * @since 1.0
+ */
+export const editCycle = (id, payload) => axios.put(`/cycle/${id}`, payload);
+
+/**
+ * @url DELETE /person/:id
+ * @since 1.0
+ */
+export const deleteCycle = (id) => axios.delete(`/cycle/${id}`);
